@@ -1,4 +1,5 @@
 import Header from '../Components/Header'
+import Footer from '../Components/Home/Footer'
 import authside from '../assets/Auth.png'
 import { Outlet, useLocation } from 'react-router-dom'
 
@@ -10,7 +11,7 @@ const Auth = () => {
     <div className="min-h-screen bg-[#fffafc]">
       <Header />
 
-      <main className="relative isolate px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <main className="relative isolate px-4 py-8 sm:px-6 lg:px-8 ">
         <div className="pointer-events-none absolute -top-28 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-[#ffd2e6]/60 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 right-0 -z-10 h-80 w-80 rounded-full bg-[#eadcff]/70 blur-3xl" />
 
@@ -41,6 +42,7 @@ const Auth = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

@@ -7,6 +7,7 @@ import {
   ShieldAlert,
   Sparkles,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const features = [
   {
@@ -14,36 +15,42 @@ const features = [
     description: 'Smart symptom analysis to help you understand what needs attention.',
     icon: HeartPulse,
     action: 'Check Symptoms Now',
+    url: '/symptom-check',
   },
   {
     title: 'Talk To Me',
     description: 'AI supports anytime for reassurance and quick guidance.',
     icon: Bot,
     action: 'Start Conversation',
+      url: '/chatbot',
   },
   {
     title: 'Daily Health Tips',
     description: 'Fresh pregnancy-friendly insights to keep every day feeling supported.',
     icon: Sparkles,
     action: 'See Daily Tips',
+    url: '/daily-activity',
   },
   {
-    title: 'Mental Health Support',
+    title: 'Mental Health',
     description: 'Emotional care and stress relief designed for your wellbeing.',
     icon: BrainCircuit,
-    action: 'Get Support',
+    action: 'Check Mental Health',
+    url: '/mental-health',
   },
   {
     title: 'Emergency Service',
     description: '24/7 urgent healthcare support with fast escalation when needed.',
     icon: ShieldAlert,
     action: 'Get Emergency Help',
+    url: '/emergency',
   },
   {
     title: 'Weekly Pregnancy Tracker',
     description: 'Follow your pregnancy progress with a clear week-by-week timeline.',
     icon: CalendarHeart,
     action: 'Check Weekly Advice',
+    url: '/week/1',
   },
 ]
 
@@ -99,10 +106,10 @@ const Features = () => {
 
                 {feature.action ? (
                   <div className="relative mt-6">
-                    <button className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(155,93,229,0.18)] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(155,93,229,0.24)]">
+                    <Link to={feature.url} className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(155,93,229,0.18)] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(155,93,229,0.24)]">
                       {feature.action}
                       <ArrowRight className="h-4 w-4" />
-                    </button>
+                    </Link>
                   </div>
                 ) : (
                   <div className="relative mt-6 h-px w-full bg-linear-to-r from-pink-200 via-violet-200 to-transparent" />

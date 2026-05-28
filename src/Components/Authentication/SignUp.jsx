@@ -46,14 +46,12 @@ const SignUp = () => {
         const { email, password } = data
         try {
             await  createUser(email,password)
-    
-     setUser(auth.currentUser);
-     console.log('User created:', auth.currentUser)
+    setUser(auth.currentUser);
      const profile={
-                displayName:data.name,
-               
+                displayName:data.name,   
             }
     await updateProfile(auth.currentUser,profile)
+    
 
     localStorage.setItem(
             "pendingUser",
@@ -67,10 +65,12 @@ const SignUp = () => {
 
             })
         );
+
         await sendEmailVerification(auth.currentUser,{
-                          url:`${window.location.origin}/`,
+                          url:`${window.location.origin}/auth/signin`,
                           handleCodeInApp:false
                       })
+                  
         alert('Verification email sent! Please check your inbox and verify your email before signing in.')
         navigate('/auth/verify-email')  
         }catch(error)

@@ -1,120 +1,65 @@
-import { sendEmailVerification } from 'firebase/auth';
-import { useEffect, useState } from 'react'
-import {  Link, useNavigate } from 'react-router-dom'
-import { auth } from '../../Firebase/Firebase.init';
+import { sendEmailVerification } from 'firebase/auth'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { auth } from '../../Firebase/Firebase.init'
+import { AuthContext } from '../../Context/AuthContext'
 
 const VerifyEmail = () => {
- 
-const [resendLoading, setResendLoading] = useState(false);
-const navigate = useNavigate();
- 
 
-const handleResend = async () => {
-
-    if(!auth.currentUser){
-        navigate('/auth/login');
-        return;
-    }
-
+  const navigate = useNavigate();
+  const {logoutUser}=useContext(AuthContext);
+  const [resendLoading, setResendLoading] = useState(false);
+  const handleResend=async()=>
+  {
     setResendLoading(true);
+    console.log(auth.currentUser);
+    try{
+      await sendEmailVerification(auth.currentUser,{
+          url:`${window.location.origin}/auth/signin`,
+          handleCodeInApp:false
 
-    try {
+      });
+      alert('Verification email sent! Please check your inbox.');
+     
 
-        await sendEmailVerification(auth.currentUser,{
-            url:`${window.location.origin}/`,
-            handleCodeInApp:false
-        });
+    }catch(error)
+    {
+      console.error('Error sending verification email:', error);
+      alert('Failed to resend verification email. Please try again later.');
 
-        alert("Verification email sent again.");
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Unable to resend verification email.");
-
-    } finally {
-
-        setResendLoading(false);
 
     }
-}
-const [savingUser, setSavingUser] = useState(false);
-
-useEffect(() => {
-
-  const interval = setInterval(async () => {
-
-    const currentUser = auth.currentUser;
-
-    if (!currentUser) {
-      clearInterval(interval);
-      navigate('/auth/login');
-      return;
+    finally{
+       setResendLoading(false);
     }
+  }
 
-    try {
-
-      await currentUser.reload();
-
-      if (currentUser.emailVerified && !savingUser) {
-
-        setSavingUser(true);
-
-        clearInterval(interval);
-
-        const pendingUser = JSON.parse(
-          localStorage.getItem("pendingUser")
-        );
-
-        if (!pendingUser) {
-          alert("No user data found");
-          navigate('/auth/signup');
+  useEffect(() => {
+      const interval = setInterval(async () => {
+        if (!auth.currentUser) {
+          navigate('/auth/signin');
           return;
         }
 
-        const checkUser = await fetch(
-          `http://localhost:5000/user?email=${pendingUser.email}`
-        );
+        await auth.currentUser.reload();
 
-        const existingUser = await checkUser.json();
+        if (auth.currentUser.emailVerified) {
+          clearInterval(interval);
+          const verifiedEmail = auth.currentUser.email;
+          if (verifiedEmail) {
+              await logoutUser();
 
-        if (!existingUser.exists) {
-
-          const res=await fetch("http://localhost:5000/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              ...pendingUser,
-              uid: currentUser.uid,
-              verified: true
-            })
-          });
-           console.log(res);
-
-        }
+              navigate('/auth/signin');
+          }
+        
        
-        localStorage.removeItem("pendingUser");
+        }
+      }, 1000);
 
-        alert("Email verified successfully!");
+      return () => clearInterval(interval);
+    }, [navigate, logoutUser]);
 
-        navigate('/');
-
-      }
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  }, 3000);
-
-  return () => clearInterval(interval);
-
-}, [navigate, savingUser]);
+  
 
   return (
     <div>
@@ -127,7 +72,15 @@ useEffect(() => {
 
       <div className="mt-8 max-w-xl">
         <div className="rounded-xl border border-pink-50 bg-white/60 p-6 shadow-sm">
-          <div className="mt-6 flex flex-col gap-3">
+         
+
+          <div className="mt-2 flex flex-col gap-3">
+            <span className="text-sm text-slate-500">If you don't see the email, please check your spam folder or junk mail.</span>
+           
+
+            
+            
+
             <button
               onClick={handleResend}
               disabled={resendLoading}
@@ -135,11 +88,13 @@ useEffect(() => {
             >
               {resendLoading ? 'Resending...' : 'Resend Verification Email'}
             </button>
+
             <div className="text-center">
-              <Link to="/auth/signin" className="text-sm font-medium text-pink-600 hover:underline">  
+              <Link to="/auth/signin" className="text-sm font-medium text-pink-600 hover:underline">
                 Back to Sign In
               </Link>
             </div>
+
             <div className="rounded-xl bg-pink-50/70 px-4 py-3 text-center text-sm text-slate-600">
               If you don’t receive an email, you can contact support at <span className="font-medium">support@example.com</span>
             </div>

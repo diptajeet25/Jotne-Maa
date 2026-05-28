@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import heroImg from '../../assets/banner.png'
 
 const Banner = () => {
@@ -19,8 +20,8 @@ const Banner = () => {
             <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg lg:mx-0">Comprehensive pregnancy care — medical guidance, mental health support, 24/7 emergency help, and weekly progress tracking to keep you and your baby safe and supported.</p>
 
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
-              <a id="get-started" href="#get-started" className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-6 py-3 text-white text-base font-semibold shadow-[0_20px_40px_rgba(155,93,229,0.12)] transition-transform duration-200 hover:-translate-y-0.5">Get Started</a>
-              <a id="talk-expert" href="#talk-expert" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/60 backdrop-blur-sm px-6 py-3 text-pink-600 text-base font-medium hover:bg-white/70">Talk to Care AI</a>
+              <Link to="/daily-activity" id="get-started" href="#get-started" className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-6 py-3 text-white text-base font-semibold shadow-[0_20px_40px_rgba(155,93,229,0.12)] transition-transform duration-200 hover:-translate-y-0.5">Get Daily Tips</Link>
+              <Link to="/chatbot" id="talk-expert" href="#talk-expert" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/60 backdrop-blur-sm px-6 py-3 text-pink-600 text-base font-medium hover:bg-white/70">Talk to Care AI</Link>
             </div>
 
                 <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 text-left sm:grid-cols-3 lg:mx-0">

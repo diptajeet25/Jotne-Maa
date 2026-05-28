@@ -1,52 +1,64 @@
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthContext'
 import { auth } from '../../Firebase/Firebase.init'
-import { useNavigate } from 'react-router'
+import { signOut } from 'firebase/auth'
+import useAxiosSecure from '../../Hooks/useAxiosSecure'
 
 const SignIn = () => {
     
     const {register, handleSubmit, formState: { errors }} = useForm()
     const [submitted, setSubmitted] = useState(false)
     const navigate = useNavigate();
-    const {loginUser,logoutUser}=useContext(AuthContext);
-  const onSubmit = async (data) => {
-
-    try {
+    const {loginUser}=useContext(AuthContext);
+    const axiosSecure=useAxiosSecure();
+    const onSubmit=async(data)=>
+    {
         setSubmitted(true);
-        const result = await loginUser(
-            data.email,
-            data.password
-        );
+        try{
+            console.log(data);
+            console.log(auth.currentUser);
+           
+            await loginUser(data.email,data.password);
+             if(!auth.currentUser?.emailVerified)
+            {
+                alert('Please verify your email before signing in. Check your inbox for the verification email.');
+                await signOut(auth);
+                return;
+            }
 
-        await result.user.reload();
-        console.log(auth.currentUser);
+            const existingUser=await axiosSecure.get(`/users?email=${data.email}`);
+            console.log(existingUser.data.exists);
 
-        if (!result.user.emailVerified) {
-            await logoutUser();
-
-            alert("Please verify your email first.");
-
-            return 
+            if(existingUser.data.exists===false)
+            {
+                const userData=localStorage.getItem('pendingUser')
+                const parsedData=JSON.parse(userData);
+                await axiosSecure.post('/users',parsedData);
+                console.log('User created successfully.');
+                
+                localStorage.removeItem('pendingUser');
+            }
+            navigate('/');
+            alert('Sign in successful! Welcome back to Jotne Maa.')
         }
+        catch(error)
+        {
+            if(error.response && error.response.status===404)
+            {
+                alert('No user found with this email. Please sign up first.');
+                navigate('/auth');
+                return;
+            }
 
-        alert("Signed in successfully!");
-
-        navigate('/');
-
-    } catch (error) {
-
-        console.log(error);
-
-        alert(error.message);
-
-    } finally {
-
-        setSubmitted(false);
-
+        }
+        finally{
+            setSubmitted(false);
+        }
     }
-}
+
+
 
       const inputClass =
         'mt-1.5 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100'

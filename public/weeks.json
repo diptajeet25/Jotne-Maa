@@ -1,0 +1,167 @@
+{
+  "week": 42,
+  "trimester": "Third Trimester",
+
+  "pregnancy": {
+    "message": "Your pregnancy has reached full term and your healthcare provider will closely monitor you and your baby.",
+    "logo": "https://cdn-icons-png.flaticon.com/512/4558/4558339.png"
+  },
+
+  "babySize": {
+    "name": "Large Watermelon",
+    "logo": "https://img.icons8.com/color/96/watermelon.png"
+  },
+
+  "babyLength": "52 cm",
+  "babyWeight": "3680 g",
+
+  "babyDevelopment": [
+    {
+      "point": "The baby is fully developed and prepared for life outside the womb",
+      "logo": "https://img.icons8.com/?size=100&id=115021&format=png&color=000000"
+    },
+    {
+      "point": "The baby's fingernails and hair may continue growing",
+      "logo": "https://img.icons8.com/?size=100&id=115021&format=png&color=000000"
+    },
+    {
+      "point": "The baby remains active while waiting for labor to begin",
+      "logo": "https://img.icons8.com/?size=100&id=115021&format=png&color=000000"
+    }
+  ],
+
+  "motherBody": [
+    {
+      "point": "You may feel physically exhausted and emotionally ready for labor"
+    },
+    {
+      "point": "Strong contractions or labor signs may begin anytime"
+    },
+    {
+      "point": "Close medical monitoring may increase after the due date"
+    }
+  ],
+
+  "commonSymptoms": [
+    {
+      "point": "Strong contractions",
+      "logo": "https://img.icons8.com/?size=100&id=aFAD7dOAnYmF&format=png&color=000000"
+    },
+    {
+      "point": "Fatigue",
+      "logo": "https://img.icons8.com/?size=100&id=cGlItnpqXtml&format=png&color=000000"
+    },
+    {
+      "point": "Pelvic pressure",
+      "logo": "https://img.icons8.com/?size=100&id=ko65oOIW3ciq&format=png&color=000000"
+    },
+    {
+      "point": "Back pain",
+      "logo": "https://img.icons8.com/?size=100&id=lbXlMNF2BawO&format=png&color=000000"
+    }
+  ],
+
+  "advice": [
+    "Follow your healthcare provider's guidance carefully",
+    "Continue monitoring baby movements and contractions",
+    "Stay calm and prepared for delivery at any time",
+    "Keep eating light healthy meals and stay hydrated",
+    "Seek immediate care if you notice emergency warning signs"
+  ],
+
+  "foodsForYou": [
+    {
+      "name": "Banana",
+      "logo": "https://img.icons8.com/color/96/banana.png"
+    },
+    {
+      "name": "Egg",
+      "logo": "https://img.icons8.com/?size=100&id=Ybx2AvxzyUfH&format=png&color=000000"
+    },
+    {
+      "name": "Spinach",
+      "logo": "https://img.icons8.com/color/96/spinach.png"
+    },
+    {
+      "name": "Yogurt",
+      "logo": "https://img.icons8.com/color/96/yogurt.png"
+    }
+  ],
+
+  "foodsToAvoid": [
+    {
+      "name": "Raw Fish",
+      "logo": "https://img.icons8.com/?size=100&id=OClCFhCarb8m&format=png&color=000000"
+    },
+    {
+      "name": "Alcohol",
+      "logo": "https://img.icons8.com/?size=100&id=XyyQXBHjNuYW&format=png&color=000000"
+    },
+    {
+      "name": "Excess Coffee",
+      "logo": "https://img.icons8.com/?size=100&id=TKdpkfwePn6s&format=png&color=000000"
+    },
+    {
+      "name": "Processed Junk Food",
+      "logo": "https://img.icons8.com/color/96/hamburger.png"
+    }
+  ],
+
+  "exercise": [
+    {
+      "name": "Light Walking",
+      "logo": "https://img.icons8.com/?size=100&id=tY58gzG7Gibz&format=png&color=000000"
+    },
+    {
+      "name": "Breathing Exercise",
+      "logo": "https://img.icons8.com/?size=100&id=NZ6xJ1MPsUMH&format=png&color=000000"
+    },
+    {
+      "name": "Prenatal Stretching",
+      "logo": "https://img.icons8.com/?size=100&id=9tocvamlvABl&format=png&color=000000"
+    },
+    {
+      "name": "Prenatal Yoga",
+      "logo": "https://img.icons8.com/?size=100&id=hYBKkWFjtuCu&format=png&color=000000"
+    }
+  ],
+
+  "meditation": [
+    {
+      "name": "Deep Breathing",
+      "logo": "https://img.icons8.com/?size=100&id=NZ6xJ1MPsUMH&format=png&color=000000"
+    },
+    {
+      "name": "Positive Thinking",
+      "logo": "https://img.icons8.com/?size=100&id=5ww9OQCEILXl&format=png&color=000000"
+    },
+    {
+      "name": "Soft Music Relaxation",
+      "logo": "https://img.icons8.com/?size=100&id=iHkQe1pmsq8Q&format=png&color=000000"
+    },
+    {
+      "name": "Mind Relaxation",
+      "logo": "https://img.icons8.com/?size=100&id=xF369CPzN7Sw&format=png&color=000000"
+    }
+  ],
+
+  "waterIntake": "8-10 glasses water daily",
+
+  "sleep": "7-9 hours of sleep daily",
+
+  "emergencyWarning": [
+    "Heavy bleeding",
+    "Water breaking",
+    "Strong regular contractions",
+    "Decreased baby movement"
+  ],
+
+  "checklist": [
+    "Stay in contact with your healthcare provider",
+    "Keep hospital essentials ready",
+    "Track baby movements carefully",
+    "Drink enough water"
+  ],
+
+  "funFact": "At week 42, your baby is fully developed and ready to begin life outside the womb."
+}

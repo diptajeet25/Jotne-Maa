@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router'
 const navItems = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
-  { to: '/services', label: 'Emergency Services' },
+  { to: '/emergency', label: 'Emergency Services' },
 ]
 
 const Header = () => {
@@ -89,7 +89,7 @@ const Header = () => {
             ))}
           </ul>
         </div>
-{ user ? <div className="navbar-end hidden gap-3 lg:flex">
+{ user?.emailVerified ? <div className="navbar-end hidden gap-3 lg:flex">
           <button onClick={handleLogout} className="rounded-full cursor-pointer border border-pink-200 bg-white/70 px-5 py-2.5 text-sm font-semibold text-pink-600 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md">
             Logout
           </button> </div> : <div className="navbar-end hidden gap-3 lg:flex">
