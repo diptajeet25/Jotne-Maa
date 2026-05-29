@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { motion } from 'framer-motion'
-import ReactMarkdown from 'react-markdown'
 import {
   RiAlertLine,
   RiArrowRightLine,
@@ -21,25 +20,17 @@ import useAxiosSecure from '../Hooks/useAxiosSecure'
 
 const symptomOptions = [
   'Fatigue',
-  'Headache',
   'Fever',
-  'Anxiety',
-  'Depression',
   'Back pain',
   'Vomiting',
-  'Dizziness',
   'Shortness of breath',
   'Chest pain',
   'Swelling',
   'Heartburn',
   'Cramps',
-  'Spotting',
   'Reduced fetal movement',
-  'Blurred vision',
-  'Leaking fluid',
   'Persistent vomiting',
   'Urinary pain',
-  'Contractions',
 ]
 
 const ageOptions = Array.from({ length: 38 }, (_, index) => String(index + 18))
@@ -48,64 +39,73 @@ const trimesterOptions = ['First Trimester', 'Second Trimester', 'Third Trimeste
 const severityOptions = ['Mild', 'Moderate', 'Severe', 'Very Severe']
 const highlightPills = ['Pregnancy aware', 'AI powered', 'Mobile responsive']
 
-const getResponseRoot = (payload) => payload?.data ?? payload?.result ?? payload?.response ?? payload
-
-const splitList = (value) => {
-  if (!value) return []
-  if (Array.isArray(value)) return value.flatMap((item) => splitList(item)).map((item) => item.trim()).filter(Boolean)
-  if (typeof value === 'object') {
-    const label = value.label ?? value.name ?? value.title ?? value.text ?? value.step ?? ''
-    const nested = splitList(value.items ?? value.values ?? value.steps)
-    return [String(label).trim(), ...nested].filter(Boolean)
-  }
-  const text = String(value).trim()
-  if (!text) return []
-  return text.split(/\n|;|\u2022/).map((item) => item.replace(/^\s*[-•]\s*/, '').trim()).filter(Boolean)
-}
-
-const splitSources = (value) => {
-  if (!value) return []
-  if (Array.isArray(value)) return value.flatMap(splitSources)
-  if (typeof value === 'object') {
-    const label = value.label ?? value.name ?? value.title ?? value.text ?? value.source ?? ''
-    const url = value.url ?? value.href ?? value.link ?? ''
-    return label || url ? [{ label: String(label || url).trim(), url: String(url).trim() }] : []
-  }
-  const text = String(value).trim()
-  if (!text) return []
-  return [{ label: text, url: /^https?:\/\//i.test(text) ? text : '' }]
-}
-
 const normalizeSymptomResponse = (payload, fallbackSymptom) => {
-  const root = getResponseRoot(payload) ?? {}
-  const symptomName = String(root.symptom ?? root.symptomName ?? root.title ?? fallbackSymptom ?? '').trim()
-  const analysis = String(root.aiAnalysis ?? root.analysis ?? root.summary ?? root.message ?? '').trim()
-  const reason = String(root.reason ?? root.description ?? root.cause ?? '').trim()
-  const urgencyLevel = String(root.urgencyLevel ?? root.urgency ?? (root.emergency ? 'High' : '') ?? '').trim()
-  const careRecommendation = splitList(root.careRecommendation ?? root.recommendation ?? root.treatmentSteps ?? root.steps ?? root.advice)
-  const contactDoctor = String(root.whenToContactDoctor ?? root.contactDoctor ?? root.followUp ?? '').trim()
-  const sources = splitSources(root.source ?? root.sources ?? root.reference ?? root.references)
-  const emergency = Boolean(root.emergency ?? root.isEmergency ?? /high/i.test(urgencyLevel))
+  const root = payload?.data ?? payload?.result ?? payload?.response ?? payload ?? {}
 
-  const noResult = root.found === false || payload?.found === false || payload?.success === false || (!analysis && !reason && careRecommendation.length === 0 && !contactDoctor && sources.length === 0 && !urgencyLevel)
-  if (noResult) return { status: 'empty', symptomName: fallbackSymptom }
+  if (root?.error === true) {
+    return {
+      status: 'error',
+      message: String(root.message ?? 'Unable to process the symptom check right now. Please try again.'),
+    }
+  }
+
+  if (root?.found === false) {
+    return {
+      status: 'empty',
+      symptom: fallbackSymptom,
+      message: String(root.message ?? 'No matching symptom found.'),
+    }
+  }
+
+  const sourceValue = root.source ?? root.sources ?? root.reference ?? root.references ?? ''
+  const sourceItems = Array.isArray(sourceValue)
+    ? sourceValue.flatMap((item) => {
+        if (!item) return []
+        if (typeof item === 'object') {
+          const label = item.label ?? item.name ?? item.title ?? item.text ?? item.source ?? ''
+          return label ? [String(label).trim()] : []
+        }
+        return [String(item).trim()]
+      }).filter(Boolean)
+    : String(sourceValue).trim()
+      ? [String(sourceValue).trim()]
+      : []
+
+  const recommendedCare = Array.isArray(root.recommendedCare)
+    ? root.recommendedCare.map((item) => String(item).trim()).filter(Boolean)
+    : String(root.recommendedCare ?? '').trim()
+      ? String(root.recommendedCare)
+          .split(/\n|;|\u2022/)
+          .map((item) => item.replace(/^\s*[-•]\s*/, '').trim())
+          .filter(Boolean)
+      : []
 
   return {
     status: 'success',
-    symptomName: symptomName || fallbackSymptom,
-    analysis: analysis || `Analysis for ${symptomName || fallbackSymptom}`,
-    reason,
-    urgencyLevel: urgencyLevel || (emergency ? 'High' : 'Moderate'),
-    careRecommendation,
-    contactDoctor,
-    emergency,
-    sources,
+    emergency: Boolean(root.emergency),
+    symptom: String(root.symptom ?? fallbackSymptom).trim(),
+    severity: String(root.severity ?? 'Moderate').trim(),
+    riskLevel: String(root.riskLevel ?? root.risk_level ?? root.severity ?? 'Moderate').trim(),
+    possibleReason: String(root.possibleReason ?? '').trim(),
+    recommendedCare,
+    warning: String(root.warning ?? '').trim(),
+    source: sourceItems,
+    guidance: String(root.guidance ?? '').trim(),
+    requiresDoctor: Boolean(root.requiresDoctor),
   }
 }
 
 const getErrorMessage = (error) => {
+  const statusCode = error?.response?.status
   const responseMessage = error?.response?.data?.message ?? error?.response?.data?.error ?? ''
+  const requestFailed = !error?.response && error?.request
+
+  if (statusCode === 404) return 'The symptom-check service was not found. Please verify the backend route exists.'
+  if (statusCode >= 500) return 'The server is temporarily unavailable. Please try again shortly.'
+  if (error?.code === 'ECONNABORTED') return 'The request timed out. Please try again.'
+  if (requestFailed) return 'Unable to reach the backend. Please check the API URL, network connection, and CORS settings.'
   if (responseMessage) return String(responseMessage)
+  if (error?.message === 'Network Error') return 'Unable to reach the backend. Please check the API URL, HTTPS, and CORS settings.'
   if (error?.message) return error.message
   return 'Unable to analyze symptoms right now. Please try again in a moment.'
 }
@@ -136,33 +136,6 @@ const ResultCard = ({ title, icon: Icon, tone = 'soft', children }) => {
   )
 }
 
-const MarkdownBlock = ({ children, className = '' }) => (
-  <div className={`space-y-4 text-sm leading-8 text-slate-700 ${className}`}>
-    <ReactMarkdown
-      components={{
-        h2: (props) => (
-          <h2
-            className="mt-5 mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-pink-600 first:mt-0"
-            {...props}
-          />
-        ),
-        p: (props) => <p className="mb-3 leading-8 text-slate-700 last:mb-0" {...props} />,
-        li: (props) => (
-          <li
-            className="mb-2 ml-5 list-disc leading-8 text-slate-700 marker:text-pink-400"
-            {...props}
-          />
-        ),
-        strong: (props) => (
-          <strong className="font-semibold text-slate-950" {...props} />
-        ),
-      }}
-    >
-      {children}
-    </ReactMarkdown>
-  </div>
-)
-
 const StatusPill = ({ emergency }) => (
   <span className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] ${emergency ? 'bg-red-100 text-red-700' : 'bg-pink-100 text-pink-700'}`}>
     {emergency ? <RiAlertLine className="h-4 w-4" /> : <RiCheckboxCircleLine className="h-4 w-4" />}
@@ -170,16 +143,70 @@ const StatusPill = ({ emergency }) => (
   </span>
 )
 
+const getRiskStyles = (riskLevel = '') => {
+  const normalized = String(riskLevel).toLowerCase()
+
+  if (normalized === 'low') {
+    return {
+      badge: 'bg-emerald-100 text-emerald-700 border-emerald-200 shadow-[0_0_0_1px_rgba(16,185,129,0.12),0_10px_30px_rgba(16,185,129,0.12)]',
+      glow: 'shadow-[0_0_24px_rgba(16,185,129,0.16)]',
+      icon: RiCheckboxCircleLine,
+      pulse: false,
+    }
+  }
+
+  if (normalized === 'high') {
+    return {
+      badge: 'bg-orange-100 text-orange-700 border-orange-200 shadow-[0_0_0_1px_rgba(249,115,22,0.12),0_10px_30px_rgba(249,115,22,0.14)]',
+      glow: 'shadow-[0_0_24px_rgba(249,115,22,0.18)]',
+      icon: RiAlertLine,
+      pulse: true,
+    }
+  }
+
+  if (normalized === 'critical') {
+    return {
+      badge: 'bg-red-100 text-red-700 border-red-200 shadow-[0_0_0_1px_rgba(239,68,68,0.12),0_10px_30px_rgba(239,68,68,0.16)]',
+      glow: 'shadow-[0_0_24px_rgba(239,68,68,0.20)]',
+      icon: RiAlertLine,
+      pulse: true,
+    }
+  }
+
+  return {
+    badge: 'bg-amber-100 text-amber-700 border-amber-200 shadow-[0_0_0_1px_rgba(245,158,11,0.12),0_10px_30px_rgba(245,158,11,0.12)]',
+    glow: 'shadow-[0_0_24px_rgba(245,158,11,0.16)]',
+    icon: RiInformationLine,
+    pulse: false,
+  }
+}
+
+const ChecklistItem = ({ children }) => (
+  <li className="flex gap-3 text-sm leading-7 text-slate-700">
+    <span className="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-pink-100 text-pink-600">
+      <RiCheckboxCircleLine className="h-3.5 w-3.5" />
+    </span>
+    <span>{children}</span>
+  </li>
+)
+
+const SourceBadge = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border border-white/70 bg-white/90 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">
+    {children}
+  </span>
+)
+
 const SymptomCheck = () => {
   const axiosSecure = useAxiosSecure()
-  const [age, setAge] = useState('28')
-  const [pregnancyStatus, setPregnancyStatus] = useState('Pregnant')
-  const [trimester, setTrimester] = useState('Second Trimester')
-  const [severity, setSeverity] = useState('Moderate')
-  const [symptomSearch, setSymptomSearch] = useState('Fatigue')
+  const [age, setAge] = useState('')
+  const [pregnancyStatus, setPregnancyStatus] = useState('')
+  const [trimester, setTrimester] = useState('')
+  const [severity, setSeverity] = useState('')
+  const [symptomSearch, setSymptomSearch] = useState('')
   const [result, setResult] = useState(null)
   const [formError, setFormError] = useState('')
   const [requestError, setRequestError] = useState('')
+  const resultSectionRef = useRef(null)
 
   const mutation = useMutation({
     mutationFn: async (payload) => {
@@ -196,23 +223,26 @@ const SymptomCheck = () => {
   }
 
   const handleClear = () => {
-    setAge('28')
-    setPregnancyStatus('Pregnant')
-    setTrimester('Second Trimester')
-    setSeverity('Moderate')
-    setSymptomSearch('Fatigue')
+    setAge('')
+    setPregnancyStatus('')
+    setTrimester('')
+    setSeverity('')
+    setSymptomSearch('')
     setResult(null)
     setFormError('')
     setRequestError('')
     mutation.reset()
   }
 
+  const riskStyles = getRiskStyles(result?.riskLevel ?? result?.severity)
+  const sourceBadges = result?.source?.length ? result.source : []
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     const symptom = symptomSearch.trim()
 
-    if (!symptom) {
-      setFormError('Please select or search for a symptom before analyzing.')
+    if (!age || !pregnancyStatus || !trimester || !severity || !symptom) {
+      setFormError('Please fill in all fields before analyzing.')
       setResult(null)
       return
     }
@@ -222,14 +252,32 @@ const SymptomCheck = () => {
 
     const payload = { age: Number(age), pregnancyStatus, trimester, severity, symptom }
 
+    console.log(payload)
+
     try {
       const data = await mutation.mutateAsync(payload)
       setResult(normalizeSymptomResponse(data, symptom))
     } catch (error) {
+      console.log(error?.response)
+      console.log(error?.message)
       setResult(null)
       setRequestError(getErrorMessage(error))
     }
   }
+
+  useEffect(() => {
+    if (!result) return
+
+    const el = resultSectionRef.current
+    if (!el) return
+
+    const header = document.querySelector('header')
+    const headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0
+
+    const top = el.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8
+
+    window.scrollTo({ top, left: 0, behavior: 'smooth' })
+  }, [result])
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(251,207,232,0.55),transparent_28%),radial-gradient(circle_at_top_right,rgba(196,181,253,0.38),transparent_28%),linear-gradient(180deg,#fff7fb_0%,#ffffff_100%)] text-slate-900">
@@ -328,6 +376,7 @@ const SymptomCheck = () => {
                       <div className="space-y-2">
                         <label htmlFor="age" className="text-sm font-semibold text-slate-800">Age</label>
                         <select id="age" value={age} onChange={(event) => setAge(event.target.value)} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100">
+                          <option value="" disabled hidden>Select age</option>
                           {ageOptions.map((option) => <option key={option} value={option}>{option}</option>)}
                         </select>
                       </div>
@@ -335,6 +384,7 @@ const SymptomCheck = () => {
                       <div className="space-y-2">
                         <label htmlFor="pregnancy-status" className="text-sm font-semibold text-slate-800">Pregnancy Status</label>
                         <select id="pregnancy-status" value={pregnancyStatus} onChange={(event) => setPregnancyStatus(event.target.value)} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100">
+                          <option value="" disabled hidden>Select pregnancy status</option>
                           {pregnancyStatusOptions.map((option) => <option key={option} value={option}>{option}</option>)}
                         </select>
                       </div>
@@ -342,6 +392,7 @@ const SymptomCheck = () => {
                       <div className="space-y-2">
                         <label htmlFor="trimester" className="text-sm font-semibold text-slate-800">Pregnancy Trimester</label>
                         <select id="trimester" value={trimester} onChange={(event) => setTrimester(event.target.value)} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100">
+                          <option value="" disabled hidden>Select trimester</option>
                           {trimesterOptions.map((option) => <option key={option} value={option}>{option}</option>)}
                         </select>
                       </div>
@@ -349,6 +400,7 @@ const SymptomCheck = () => {
                       <div className="space-y-2">
                         <label htmlFor="severity" className="text-sm font-semibold text-slate-800">Severity Level</label>
                         <select id="severity" value={severity} onChange={(event) => setSeverity(event.target.value)} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100">
+                          <option value="" disabled hidden>Select severity</option>
                           {severityOptions.map((option) => <option key={option} value={option}>{option}</option>)}
                         </select>
                       </div>
@@ -388,7 +440,7 @@ const SymptomCheck = () => {
               </div>
             </section>
 
-            <section className="w-full" aria-live="polite">
+            <section ref={resultSectionRef} className="w-full" aria-live="polite">
               {requestError ? (
                 <motion.div variants={cardMotion} initial="hidden" animate="show" className="rounded-4xl border border-red-200 bg-red-50/90 p-5 shadow-[0_18px_60px_rgba(239,68,68,0.12)] sm:p-6 lg:p-8">
                   <div className="flex items-start gap-3">
@@ -396,6 +448,7 @@ const SymptomCheck = () => {
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-red-600">Error</p>
                       <p className="mt-2 text-sm leading-7 text-red-800">{requestError}</p>
+                      <p className="mt-2 text-sm leading-7 text-red-700">Please try again after a moment.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -407,7 +460,7 @@ const SymptomCheck = () => {
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100 text-pink-600"><RiInformationLine className="h-6 w-6" /></div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-pink-600">Empty state</p>
-                      <p className="mt-2 text-sm leading-7 text-slate-600">Fill the patient details and symptom field, then press Analyze Symptoms to see AI guidance.</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">Fill the patient details and symptom field, then press Analyze Symptoms to see the structured symptom result.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -419,7 +472,21 @@ const SymptomCheck = () => {
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-violet-600"><RiSearchLine className="h-6 w-6" /></div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-600">No response</p>
-                      <p className="mt-2 text-sm leading-7 text-slate-600">The backend did not return a matching analysis for <span className="font-semibold text-slate-900">{result.symptomName}</span>. Try a different symptom or severity level.</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">No matching symptom found.</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">Try another symptom or wording.</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : null}
+
+              {result?.status === 'error' ? (
+                <motion.div variants={cardMotion} initial="hidden" animate="show" className="rounded-4xl border border-red-200 bg-red-50/90 p-5 shadow-[0_18px_60px_rgba(239,68,68,0.12)] sm:p-6 lg:p-8">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-100 text-red-600"><RiAlertLine className="h-6 w-6" /></div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-red-600">Error</p>
+                      <p className="mt-2 text-sm leading-7 text-red-800">{result.message}</p>
+                      <p className="mt-2 text-sm leading-7 text-red-700">Please retry your search or try again shortly.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -428,81 +495,85 @@ const SymptomCheck = () => {
               {result?.status === 'success' ? (
                 <motion.div variants={listMotion} initial="hidden" animate="show" className="space-y-4">
                   {result.emergency ? (
-                    <ResultCard title="Emergency alert" icon={RiAlertLine} tone="danger">
-                      <div className="space-y-3 text-red-900">
-                        <span className="inline-flex w-fit items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-red-700">
-                          <RiAlertLine className="h-4 w-4" /> Seek medical help immediately
-                        </span>
-                        <p className="leading-7">This response indicates a higher-risk symptom. Please contact your clinician or emergency care immediately.</p>
-                      </div>
-                    </ResultCard>
-                  ) : (
-                    <ResultCard title="Calm care status" icon={RiCheckboxCircleLine} tone="warm">
-                      <div className="space-y-3 text-slate-700">
-                        <StatusPill emergency={false} />
-                        <p className="leading-7">The backend treated this as a non-emergency response. Follow the recommendations below and monitor symptoms closely.</p>
-                      </div>
-                    </ResultCard>
-                  )}
-
-                  <ResultCard title="AI analysis" icon={RiStethoscopeLine} tone={result.emergency ? 'danger' : 'soft'}>
-                    <div className="space-y-4">
-                      <div>
-                        <p className="text-sm font-semibold text-slate-500">Symptom name</p>
-                        <p className={`mt-1 text-lg font-black ${result.emergency ? 'text-red-700' : 'text-slate-950'}`}>{result.symptomName}</p>
-                      </div>
-
-                      <div className="rounded-3xl border border-slate-100 bg-slate-50/80 p-5 sm:p-6">
-                        <p className="text-sm font-semibold text-slate-500">Analysis</p>
-
-                        <div className="mt-4">
-                          <MarkdownBlock>{result.analysis}</MarkdownBlock>
+                    <motion.div variants={cardMotion} className="rounded-4xl border border-red-200 bg-[linear-gradient(180deg,#fff1f1_0%,#ffffff_100%)] p-5 shadow-[0_18px_60px_rgba(239,68,68,0.12)] sm:p-6 lg:p-8">
+                      <div className="flex items-start gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-100 text-red-600"><RiAlertLine className="h-6 w-6" /></div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-red-600">Emergency banner</p>
+                          <p className="mt-2 text-sm leading-7 text-red-900">Seek emergency medical support immediately.</p>
                         </div>
                       </div>
+                    </motion.div>
+                  ) : null}
 
-                      <div>
-                        <p className="text-sm font-semibold text-slate-500">Urgency level</p>
-                        <div className="mt-2"><StatusPill emergency={result.emergency} /></div>
-                        <p className="mt-3 text-sm leading-7 text-slate-700">{result.urgencyLevel}</p>
+                  <ResultCard title="Symptom Detected" icon={RiFileList3Line} tone={result.emergency ? 'danger' : 'warm'}>
+                    <p className="text-base font-semibold text-slate-950">{result.symptom || symptomSearch}</p>
+                  </ResultCard>
+
+                  <ResultCard title="Severity Level" icon={RiHeartPulseLine} tone={result.emergency ? 'danger' : 'soft'}>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <StatusPill emergency={result.emergency} />
+                      <span className="text-lg font-black text-slate-950">{result.severity}</span>
+                    </div>
+                  </ResultCard>
+
+                  <ResultCard title="Risk Level" icon={riskStyles.icon} tone={result.emergency || riskStyles.pulse ? 'danger' : 'warm'}>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] ${riskStyles.badge} ${riskStyles.glow} ${riskStyles.pulse ? 'animate-pulse' : ''}`}>
+                        <riskStyles.icon className="h-4 w-4" />
+                        {result.riskLevel || 'Moderate'}
+                      </span>
+                    </div>
+                  </ResultCard>
+
+                  <ResultCard title="Possible Reason" icon={RiStethoscopeLine} tone="soft">
+                    <p className="leading-8 text-slate-700">{result.possibleReason || 'No reason was provided by the backend for this symptom.'}</p>
+                  </ResultCard>
+
+                  <ResultCard title="Recommended Care" icon={RiCheckboxCircleLine} tone="warm">
+                    {result.recommendedCare?.length ? (
+                      <ul className="space-y-3">
+                        {result.recommendedCare.map((item, index) => (
+                          <ChecklistItem key={`${item}-${index}`}>{item}</ChecklistItem>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="leading-8 text-slate-600">No specific care steps were provided.</p>
+                    )}
+                  </ResultCard>
+
+                  <ResultCard title="Guidance" icon={RiInformationLine} tone="soft">
+                    <div className="space-y-3">
+                      <p className="leading-8 text-slate-700">{result.guidance || 'No clinical guidance was provided.'}</p>
+                    </div>
+                  </ResultCard>
+
+                  <ResultCard title="Warning" icon={RiAlertLine} tone={result.emergency || result.riskLevel?.toLowerCase() === 'critical' ? 'danger' : 'soft'}>
+                    <div className="space-y-3">
+                      <p className="leading-8 text-slate-700">{result.warning || 'Monitor symptoms carefully.'}</p>
+                    </div>
+                  </ResultCard>
+
+                  {result.requiresDoctor ? (
+                    <motion.article variants={cardMotion} className="rounded-4xl border border-amber-200 bg-[linear-gradient(180deg,#fffaf0_0%,#ffffff_100%)] p-5 shadow-[0_18px_60px_rgba(245,158,11,0.12)] sm:p-6">
+                      <div className="flex items-start gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-amber-600"><RiInformationLine className="h-6 w-6" /></div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-600">Doctor recommendation</p>
+                          <p className="mt-2 text-sm leading-7 text-amber-900">Consult a healthcare professional as soon as possible.</p>
+                        </div>
                       </div>
-                    </div>
-                  </ResultCard>
-
-
-
-                  <ResultCard title="When to contact doctor" icon={RiInformationLine} tone="soft">
-                    <div className="rounded-3xl border border-slate-100 bg-slate-50/80 p-5 sm:p-6">
-                      {result.contactDoctor ? (
-                        <MarkdownBlock>{result.contactDoctor}</MarkdownBlock>
-                      ) : (
-                        <p className="leading-8 text-slate-700">
-                          {result.emergency
-                            ? 'Seek medical help immediately.'
-                            : 'Contact your doctor if the symptom worsens, lasts longer than expected, or new warning signs appear.'}
-                        </p>
-                      )}
-                    </div>
-                  </ResultCard>
+                    </motion.article>
+                  ) : null}
 
                   <ResultCard title="Source" icon={RiInformationLine} tone="soft">
-                    <div className="rounded-3xl border border-slate-100 bg-slate-50/80 p-5 sm:p-6">
-                      {result.sources.length ? (
-                        <div className="space-y-3">
-                          {result.sources.map((source, index) => (
-                            <div key={`${source.label}-${index}`} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-7 text-slate-700 shadow-sm">
-                              {source.url ? (
-                                <a href={source.url} target="_blank" rel="noreferrer" className="font-medium text-pink-700 underline decoration-pink-200 underline-offset-4 transition hover:text-pink-800">
-                                  {source.label}
-                                </a>
-                              ) : (
-                                <span>{source.label}</span>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="leading-8 text-slate-600">Based on the Healthcare Rules of World Health Foundation</p>
-                      )}
+                    <div className="space-y-3 rounded-3xl border border-slate-100 bg-slate-50/80 p-5 sm:p-6">
+                      <div className="flex flex-wrap gap-2">
+                        {(sourceBadges.length ? sourceBadges : ['WHO', 'Symptom Check']).map((item, index) => (
+                          <SourceBadge key={`${item}-${index}`}>{item}</SourceBadge>
+                        ))}
+                      </div>
+                      <p className="leading-8 text-slate-600">Verified dataset source badges shown for this response.</p>
                     </div>
                   </ResultCard>
                 </motion.div>

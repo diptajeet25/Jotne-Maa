@@ -233,7 +233,7 @@ const About = () => {
                     style={{ animationDelay: `${index * 120}ms` }}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-sm font-bold text-white shadow-lg">
+                      <div className="flex h-12 min-w-[3rem] items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-sm font-bold text-white shadow-lg px-3">
                         {step.year}
                       </div>
                       <div>
@@ -247,7 +247,7 @@ const About = () => {
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
-              <div className="glass-card rounded-[2rem] p-6 shadow-[0_20px_60px_rgba(155,93,229,0.10)] md:translate-y-8">
+              <div className="glass-card rounded-[2rem] p-6 shadow-[0_20px_60px_rgba(155,93,229,0.10)]">
                 <div className="flex items-center gap-3 text-pink-600">
                   <Heart className="h-5 w-5" />
                   <span className="text-sm font-semibold uppercase tracking-[0.2em]">Emotional mission</span>
@@ -278,7 +278,7 @@ const About = () => {
                     'Design with care',
                     'Support continuously',
                   ].map((item, index) => (
-                    <div key={item} className="rounded-2xl bg-white/70 p-4 shadow-sm transition duration-300 hover:-translate-y-1">
+                    <div key={item} className="rounded-2xl bg-pink-50 p-4 shadow-sm transition duration-300 hover:-translate-y-1">
                       <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">Step {index + 1}</div>
                       <div className="mt-2 text-base font-semibold text-slate-900">{item}</div>
                     </div>

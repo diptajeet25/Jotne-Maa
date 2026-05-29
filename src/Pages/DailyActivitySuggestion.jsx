@@ -13,7 +13,7 @@ const icons8 = {
   dumbbell: 'https://img.icons8.com/fluency/48/dumbbell.png',
   lotus: 'https://img.icons8.com/fluency/48/meditation-guru.png',
   pills: 'https://img.icons8.com/fluency/48/pill.png',
-  bell: 'https://img.icons8.com/fluency/48/bell.png',
+  bell: 'https://img.icons8.com/?size=100&id=MdmT27TpNlLH&format=png&color=000000',
   feet: 'https://img.icons8.com/fluency/48/feet.png',
   message: 'https://img.icons8.com/fluency/48/message.png',
   warning: 'https://img.icons8.com/fluency/48/warning-shield.png',
@@ -32,7 +32,8 @@ const icons8 = {
   fish: 'https://img.icons8.com/fluency/48/fish.png',
   cigarette: 'https://img.icons8.com/?size=100&id=xAxFFWsxrSE1&format=png&color=000000',
   salt: 'https://img.icons8.com/fluency/48/salt-shaker.png',
-  food: 'https://img.icons8.com/?size=100&id=M4uCyiA9v9Dp&format=png&color=000000'
+  food: 'https://img.icons8.com/?size=100&id=M4uCyiA9v9Dp&format=png&color=000000',
+  cloth: 'https://img.icons8.com/?size=100&id=31254&format=png&color=000000',
 }
 
 const Icon8 = ({ src, alt, className = '' }) => (
@@ -83,7 +84,7 @@ const dailyTips = [
     tone: 'from-cyan-400 to-sky-500',
   },
   {
-    icon: icons8.feet,
+    icon: icons8.cloth,
     title: 'Wear Comfortable Clothes',
     text: 'Choose loose, breathable clothing and supportive footwear for everyday comfort.',
     tone: 'from-orange-400 to-pink-500',

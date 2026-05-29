@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import ReactMarkdown from 'react-markdown'
 import {
@@ -114,6 +114,14 @@ function MentalHealth() {
   const [socialSupport, setSocialSupport] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [result, setResult] = useState(null)
+  const [showResultView, setShowResultView] = useState(false)
+  const resultSectionRef = useRef(null)
+
+  useEffect(() => {
+    if (showResultView) {
+      resultSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [showResultView])
 
   const { refetch } = useQuery({
     queryKey: ['mental-health-predict'],
@@ -151,16 +159,19 @@ function MentalHealth() {
       return nextAnswers
     })
     setResult(null)
+    setShowResultView(false)
   }
 
   const handleSelfHarmRiskChange = (value) => {
     setSelfHarmRisk(value)
     setResult(null)
+    setShowResultView(false)
   }
 
   const handleSocialSupportChange = (value) => {
     setSocialSupport(value)
     setResult(null)
+    setShowResultView(false)
   }
 
   const handleSubmit = async (event) => {
@@ -209,6 +220,7 @@ function MentalHealth() {
             answers,
           },
         })
+        setShowResultView(true)
 
         return
       }
@@ -249,6 +261,7 @@ function MentalHealth() {
           answers,
         },
       })
+      setShowResultView(true)
     } finally {
       setIsSubmitting(false)
     }
@@ -259,6 +272,7 @@ function MentalHealth() {
     setSelfHarmRisk('')
     setSocialSupport('')
     setResult(null)
+    setShowResultView(false)
   }
 
   const ResultIcon = result?.severityIcon ?? CheckCircle2
@@ -272,7 +286,7 @@ function MentalHealth() {
         <div className="pointer-events-none absolute right-10 top-32 h-40 w-40 rounded-full bg-violet-200/30 blur-3xl animate-pulse-glow" />
 
         <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <article className="mt-6 overflow-hidden rounded-[32px] border border-white/80 bg-white/85 shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
+        <article className="mt-6 overflow-hidden rounded-4xl border border-white/80 bg-white/85 shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
           <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="p-6 sm:p-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-pink-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-pink-600 shadow-sm">
@@ -305,10 +319,10 @@ function MentalHealth() {
               </div>
             </div>
 
-            <div className="relative flex min-h-[280px] items-center justify-center bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.12),transparent_60%),linear-gradient(180deg,rgba(250,245,255,0.95),rgba(255,255,255,0.95))] p-6 sm:min-h-[320px]">
+            <div className="relative flex min-h-70 items-center justify-center bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.12),transparent_60%),linear-gradient(180deg,rgba(250,245,255,0.95),rgba(255,255,255,0.95))] p-6 sm:min-h-80">
               <div className="absolute left-10 top-12 h-24 w-24 rounded-full bg-pink-200/40 blur-2xl" />
               <div className="absolute right-10 top-16 h-24 w-24 rounded-full bg-violet-200/40 blur-2xl" />
-              <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-gradient-to-br from-pink-100 via-white to-violet-100 shadow-[0_22px_50px_rgba(236,72,153,0.12)] sm:h-64 sm:w-64">
+              <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-linear-to-br from-pink-100 via-white to-violet-100 shadow-[0_22px_50px_rgba(236,72,153,0.12)] sm:h-64 sm:w-64">
                 <div className="flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-[0_18px_36px_rgba(15,23,42,0.08)]">
                   <BrainCircuit className="h-20 w-20 text-pink-500" />
                 </div>
@@ -317,7 +331,8 @@ function MentalHealth() {
           </div>
         </article>
 
-        <section className="mt-6 grid gap-6 xl:grid-cols-[1.15fr_0.95fr]">
+        <section className="mt-6 grid grid-cols-1 gap-6">
+          {!showResultView ? (
           <form onSubmit={handleSubmit} className="rounded-[30px] border border-white/80 bg-white/90 p-5 shadow-[0_22px_50px_rgba(15,23,42,0.08)]">
             <div className="flex items-start gap-3">
               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl bg-pink-50 text-pink-600 shadow-sm">
@@ -338,7 +353,7 @@ function MentalHealth() {
 
             <div className="mt-4 h-3 rounded-full bg-pink-100/80">
               <div
-                className="h-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-500"
+                className="h-3 rounded-full bg-linear-to-r from-pink-500 to-violet-500 transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -348,7 +363,7 @@ function MentalHealth() {
                 const selectedValue = answers[questionIndex]
 
                 return (
-                  <article key={question} className="rounded-[24px] border border-slate-100 bg-white p-4 shadow-sm">
+                  <article key={question} className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
                     <div className="flex items-start gap-3">
                       <div className="flex h-9 w-9 flex-none items-center justify-center rounded-2xl bg-violet-50 text-sm font-black text-violet-600">
                         {questionIndex + 1}
@@ -387,7 +402,7 @@ function MentalHealth() {
             </div>
 
             <div className="mt-5 space-y-4">
-              <article className="rounded-[24px] border border-red-100 bg-red-50/80 p-4 shadow-sm sm:p-5">
+              <article className="rounded-3xl border border-red-100 bg-red-50/80 p-4 shadow-sm sm:p-5">
                 <div className="flex items-start gap-3">
                   <div className="flex h-9 w-9 flex-none items-center justify-center rounded-2xl bg-white text-red-500 shadow-sm">
                     <AlertTriangle className="h-5 w-5" />
@@ -421,7 +436,7 @@ function MentalHealth() {
                 </div>
               </article>
 
-              <article className="rounded-[24px] border border-violet-100 bg-violet-50/70 p-4 shadow-sm sm:p-5">
+              <article className="rounded-3xl border border-violet-100 bg-violet-50/70 p-4 shadow-sm sm:p-5">
                 <div className="flex items-start gap-3">
                   <div className="flex h-9 w-9 flex-none items-center justify-center rounded-2xl bg-white text-violet-500 shadow-sm">
                     <ShieldCheck className="h-5 w-5" />
@@ -464,7 +479,7 @@ function MentalHealth() {
               <button
                 type="submit"
                 disabled={!isComplete || isSubmitting}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(236,72,153,0.18)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-pink-500 to-violet-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(236,72,153,0.18)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <BrainCircuit className="h-4 w-4" />}
                 {isSubmitting ? 'Calculating...' : 'Submit Screening'}
@@ -478,10 +493,9 @@ function MentalHealth() {
               </p>
             </div>
           </form>
-
-          {result ? (
-            <article className="animate-fade-up rounded-[30px] border border-white/80 bg-white/90 p-5 shadow-[0_22px_50px_rgba(15,23,42,0.08)] sm:p-6">
-              <div className={`rounded-[26px] bg-gradient-to-r ${result.accent} p-[1px]`}>
+          ) : showResultView && result ? (
+            <article ref={resultSectionRef} className="animate-fade-up rounded-[30px] border border-white/80 bg-white/90 p-5 shadow-[0_22px_50px_rgba(15,23,42,0.08)] sm:p-6">
+              <div className={`rounded-[26px] bg-linear-to-r ${result.accent} p-px`}>
                 <div className="rounded-[25px] bg-white p-5 sm:p-6">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-slate-50 shadow-sm">
@@ -543,7 +557,7 @@ function MentalHealth() {
                   </div>
 
                   {result.emergencyDetected ? (
-                    <div className="mt-5 rounded-[24px] border-2 border-red-300 bg-gradient-to-br from-red-50 to-rose-50 p-5 shadow-[0_18px_34px_rgba(239,68,68,0.18)]">
+                    <div className="mt-5 rounded-3xl border-2 border-red-300 bg-linear-to-br from-red-50 to-rose-50 p-5 shadow-[0_18px_34px_rgba(239,68,68,0.18)]">
                       <div className="flex items-start gap-3">
                         <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-red-600 text-white shadow-lg shadow-red-200">
                           <AlertTriangle className="h-6 w-6" />
@@ -617,12 +631,7 @@ function MentalHealth() {
                     </button>
                   </div>
 
-                  <div className="mt-5 rounded-[22px] border border-slate-100 bg-slate-50 p-4 text-xs leading-6 text-slate-500">
-                    <p className="font-semibold text-slate-800">Submit payload</p>
-                    <p className="mt-1 break-all font-mono text-[11px] text-slate-600">
-                      {JSON.stringify(result.submissionPayload)}
-                    </p>
-                  </div>
+               
                 </div>
               </div>
             </article>

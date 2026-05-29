@@ -18,69 +18,73 @@ import DailyActivitySuggestion from './Pages/DailyActivitySuggestion.jsx';
 import MentalHealth from './Pages/MentalHealth.jsx';
 import ChatBot from './Pages/ChatBot.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AppLayout from './Components/AppLayout.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  
-  {
-    path: "/emergency",
-    element: <Emergency/>,
-
-  },
-  {
-    path: '/symptom-check',
-    element: <SymptomCheck />,
-  },
-  {
-    path:'/auth',
-    element:<Auth />,
-    children:[
+    element: <AppLayout />,
+    children: [
       {
-        index:true,
-        element:<SignUp />
+        path: "/",
+        element: <Home />, 
       },
       {
-        path: "signin",
-        element: <SignIn />
-      }
-          ,
+        path: "/about",
+        element: <About />, 
+      },
+      {
+        path: "/emergency",
+        element: <Emergency/>,
+      },
+      {
+        path: '/symptom-check',
+        element: <SymptomCheck />,
+      },
+      {
+        path:'/auth',
+        element:<Auth />,
+        children:[
           {
-            path: "forgot-password",
-            element: <ForgotPassword />
-          }
-          ,
+            index:true,
+            element:<SignUp />
+          },
           {
-            path: "verify-email",
-            element: <VerifyEmail />
+            path: "signin",
+            element: <SignIn />
           }
-    ]
+              ,
+              {
+                path: "forgot-password",
+                element: <ForgotPassword />
+              }
+              ,
+              {
+                path: "verify-email",
+                element: <VerifyEmail />
+              }
+        ]
       },
       {
         path: "*",
         element: <NotFound />
-  },
-  {
-    path: "week/:weekNumber",
-    element:<WeekGuidance />
-  },
-  {
-    path: '/daily-activity',
-    element: <DailyActivitySuggestion />
-  },
-  {
-    path: '/mental-health',
-    element: <MentalHealth />
-  },
-  {
-    path: '/chatbot',
-    element: <ChatBot />
+      },
+      {
+        path: "week/:weekNumber",
+        element:<WeekGuidance />
+      },
+      {
+        path: '/daily-activity',
+        element: <DailyActivitySuggestion />
+      },
+      {
+        path: '/mental-health',
+        element: <MentalHealth />
+      },
+      {
+        path: '/chatbot',
+        element: <ChatBot />
+      }
+    ]
   }
 ]);
 const queryClient=new QueryClient()
