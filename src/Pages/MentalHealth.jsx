@@ -14,6 +14,7 @@ import {
   Sparkles,
   TrendingUp,
 } from 'lucide-react'
+import mentalPic from '../assets/Week/mentalhealth.png'
 import Header from '../Components/Header'
 import useAxiosSecure from '../Hooks/useAxiosSecure'
 import Footer from '../Components/Home/Footer'
@@ -322,9 +323,9 @@ function MentalHealth() {
             <div className="relative flex min-h-70 items-center justify-center bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.12),transparent_60%),linear-gradient(180deg,rgba(250,245,255,0.95),rgba(255,255,255,0.95))] p-6 sm:min-h-80">
               <div className="absolute left-10 top-12 h-24 w-24 rounded-full bg-pink-200/40 blur-2xl" />
               <div className="absolute right-10 top-16 h-24 w-24 rounded-full bg-violet-200/40 blur-2xl" />
-              <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-linear-to-br from-pink-100 via-white to-violet-100 shadow-[0_22px_50px_rgba(236,72,153,0.12)] sm:h-64 sm:w-64">
-                <div className="flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-[0_18px_36px_rgba(15,23,42,0.08)]">
-                  <BrainCircuit className="h-20 w-20 text-pink-500" />
+              <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-linear-to-br from-pink-100 via-white to-violet-100 shadow-[0_22px_50px_rgba(236,72,153,0.12)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+                <div className="flex h-56 w-56 items-center justify-center rounded-full bg-white shadow-[0_18px_36px_rgba(15,23,42,0.08)] overflow-hidden">
+                  <img src={mentalPic} alt="Mental health illustration" className="h-full w-full object-contain" />
                 </div>
               </div>
             </div>
