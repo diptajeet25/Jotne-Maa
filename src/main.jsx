@@ -17,8 +17,10 @@ import WeekGuidance from './Pages/WeekGuidance.jsx';
 import DailyActivitySuggestion from './Pages/DailyActivitySuggestion.jsx';
 import MentalHealth from './Pages/MentalHealth.jsx';
 import ChatBot from './Pages/ChatBot.jsx';
+import MaternalRiskScreening from './Pages/MaternalRiskScreening.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppLayout from './Components/AppLayout.jsx';
+import PrivateRoute from './Route/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/symptom-check',
-        element: <SymptomCheck />,
+        element: <PrivateRoute><SymptomCheck /></PrivateRoute>,
       },
       {
         path:'/auth',
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path: "week/:weekNumber",
-        element:<WeekGuidance />
+        element:<PrivateRoute><WeekGuidance /></PrivateRoute>
       },
       {
         path: '/daily-activity',
@@ -78,11 +80,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/mental-health',
-        element: <MentalHealth />
+        element: <PrivateRoute><MentalHealth /></PrivateRoute>
+      },
+      {
+        path: '/maternal-risk-screening',
+        element: <MaternalRiskScreening />,
       },
       {
         path: '/chatbot',
-        element: <ChatBot />
+        element: <PrivateRoute><ChatBot /></PrivateRoute>
       }
     ]
   }

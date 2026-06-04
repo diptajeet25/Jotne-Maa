@@ -1,0 +1,1801 @@
+[
+  {
+    "condition_name": "Miscarriage",
+    "definition": "Miscarriage is the spontaneous loss of a pregnancy before fetal viability, commonly before 20–24 weeks depending on local definition.",
+    "symptoms": [
+      "Vaginal bleeding",
+      "Lower abdominal cramping",
+      "Back pain",
+      "Passage of tissue or clots",
+      "Reduction of pregnancy symptoms"
+    ],
+    "severe_symptoms": [
+      "Heavy vaginal bleeding",
+      "Severe abdominal pain",
+      "Dizziness or fainting",
+      "Fever",
+      "Foul-smelling vaginal discharge"
+    ],
+    "risks": [
+      "Haemorrhage",
+      "Infection",
+      "Anaemia",
+      "Emotional distress",
+      "Need for surgical evacuation if incomplete"
+    ],
+    "treatment": [
+      "Assess bleeding, pain, vital signs, and gestational age.",
+      "Confirm diagnosis with ultrasound and/or serial beta-hCG when available.",
+      "Provide expectant, medical, or surgical management depending on clinical status and patient preference.",
+      "Give anti-D immunoglobulin to Rh-negative women when indicated.",
+      "Provide pain relief, counselling, and follow-up care.",
+      "Treat infection urgently if suspected."
+    ],
+    "urgent_referral_needed_if": [
+      "Heavy bleeding",
+      "Severe abdominal pain",
+      "Fainting or shock",
+      "Fever",
+      "Foul-smelling discharge",
+      "Suspected ectopic pregnancy"
+    ]
+  },
+  {
+    "condition_name": "Ectopic Pregnancy",
+    "definition": "Ectopic pregnancy occurs when a fertilized egg implants outside the uterine cavity, most commonly in the fallopian tube.",
+    "symptoms": [
+      "Missed period",
+      "Vaginal bleeding",
+      "Lower abdominal pain",
+      "Pelvic pain",
+      "Shoulder tip pain",
+      "Dizziness"
+    ],
+    "severe_symptoms": [
+      "Severe abdominal pain",
+      "Fainting",
+      "Signs of shock",
+      "Shoulder tip pain",
+      "Abdominal guarding"
+    ],
+    "risks": [
+      "Tubal rupture",
+      "Internal bleeding",
+      "Maternal shock",
+      "Maternal death",
+      "Future fertility problems"
+    ],
+    "treatment": [
+      "Assess vital signs and abdominal tenderness immediately.",
+      "Confirm with pregnancy test, ultrasound, and beta-hCG where available.",
+      "Stable patients may need methotrexate or surgical management depending on findings.",
+      "Unstable patients need emergency surgical management.",
+      "Arrange specialist obstetric or gynecological care."
+    ],
+    "urgent_referral_needed_if": [
+      "Positive pregnancy test with severe abdominal pain",
+      "Fainting",
+      "Shoulder tip pain",
+      "Heavy bleeding",
+      "Signs of shock",
+      "Suspected rupture"
+    ]
+  },
+  {
+    "condition_name": "Hyperemesis Gravidarum",
+    "definition": "Hyperemesis gravidarum is severe nausea and vomiting in pregnancy causing dehydration, weight loss, electrolyte imbalance, or ketonuria.",
+    "symptoms": [
+      "Persistent nausea",
+      "Repeated vomiting",
+      "Poor oral intake",
+      "Weight loss",
+      "Dizziness",
+      "Weakness"
+    ],
+    "severe_symptoms": [
+      "Dehydration",
+      "Ketonuria",
+      "Electrolyte imbalance",
+      "Confusion",
+      "Reduced urine output",
+      "Severe weight loss"
+    ],
+    "risks": [
+      "Dehydration",
+      "Malnutrition",
+      "Electrolyte disturbance",
+      "Wernicke encephalopathy rarely",
+      "Low birth weight if severe and prolonged"
+    ],
+    "treatment": [
+      "Assess hydration, weight loss, urine ketones, and electrolytes.",
+      "Advise small frequent meals and avoidance of triggers.",
+      "Give pregnancy-safe antiemetics according to local guideline.",
+      "Give oral or IV fluids depending on severity.",
+      "Give thiamine before glucose-containing IV fluids if prolonged vomiting.",
+      "Admit to hospital if severe dehydration or electrolyte abnormality is present."
+    ],
+    "urgent_referral_needed_if": [
+      "Unable to keep fluids down",
+      "Reduced urine output",
+      "Severe weakness",
+      "Confusion",
+      "Fainting",
+      "Blood in vomit",
+      "Signs of dehydration"
+    ]
+  },
+  {
+    "condition_name": "Septic Abortion",
+    "definition": "Septic abortion is infection of the uterus and surrounding tissues related to miscarriage or abortion.",
+    "symptoms": [
+      "Fever",
+      "Lower abdominal pain",
+      "Vaginal bleeding",
+      "Foul-smelling vaginal discharge",
+      "Chills",
+      "Uterine tenderness"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Severe abdominal pain",
+      "Sepsis",
+      "Shock",
+      "Altered consciousness",
+      "Heavy bleeding"
+    ],
+    "risks": [
+      "Maternal sepsis",
+      "Septic shock",
+      "Infertility",
+      "Disseminated intravascular coagulation",
+      "Maternal death"
+    ],
+    "treatment": [
+      "Assess airway, breathing, circulation, vital signs, and sepsis signs.",
+      "Start broad-spectrum IV antibiotics urgently.",
+      "Give IV fluids and supportive care.",
+      "Remove retained products of conception after stabilization when indicated.",
+      "Monitor for shock and organ dysfunction.",
+      "Refer urgently for hospital management."
+    ],
+    "urgent_referral_needed_if": [
+      "Any suspected septic abortion",
+      "High fever",
+      "Foul-smelling discharge",
+      "Severe abdominal pain",
+      "Shock",
+      "Altered consciousness",
+      "Heavy bleeding"
+    ]
+  },
+  {
+    "condition_name": "Molar Pregnancy",
+    "definition": "Molar pregnancy is an abnormal pregnancy caused by abnormal trophoblastic tissue growth, also called hydatidiform mole.",
+    "symptoms": [
+      "Vaginal bleeding",
+      "Excessive nausea and vomiting",
+      "Uterus larger than dates",
+      "Pelvic pressure",
+      "Passage of grape-like tissue",
+      "Early pre-eclampsia signs"
+    ],
+    "severe_symptoms": [
+      "Heavy bleeding",
+      "Severe vomiting",
+      "Severe abdominal pain",
+      "Signs of hyperthyroidism",
+      "Severe hypertension",
+      "Shock"
+    ],
+    "risks": [
+      "Haemorrhage",
+      "Anaemia",
+      "Hyperemesis gravidarum",
+      "Pre-eclampsia before 20 weeks",
+      "Gestational trophoblastic neoplasia"
+    ],
+    "treatment": [
+      "Confirm with ultrasound and beta-hCG where available.",
+      "Refer for uterine evacuation by trained provider.",
+      "Monitor beta-hCG levels after evacuation until normal.",
+      "Avoid pregnancy during follow-up period as advised by specialist.",
+      "Treat complications such as bleeding or severe vomiting."
+    ],
+    "urgent_referral_needed_if": [
+      "Heavy bleeding",
+      "Shock",
+      "Severe abdominal pain",
+      "Very high blood pressure",
+      "Severe vomiting",
+      "Suspected molar pregnancy"
+    ]
+  },
+  {
+    "condition_name": "Gestational Hypertension",
+    "definition": "Gestational hypertension is new-onset blood pressure ≥140/90 mmHg after 20 weeks of pregnancy without proteinuria or severe features.",
+    "symptoms": [
+      "High blood pressure",
+      "Often asymptomatic",
+      "Mild headache",
+      "Dizziness",
+      "Swelling of hands or feet"
+    ],
+    "severe_symptoms": [
+      "Severe hypertension (SBP ≥160 or DBP ≥110 mmHg)",
+      "Severe headache",
+      "Visual disturbances",
+      "Epigastric pain",
+      "Reduced urine output"
+    ],
+    "risks": [
+      "Progression to pre-eclampsia",
+      "Placental abruption",
+      "Fetal growth restriction",
+      "Preterm birth",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Monitor blood pressure regularly.",
+      "Check urine protein and symptoms of pre-eclampsia.",
+      "Assess fetal growth and wellbeing.",
+      "Use antihypertensive treatment if severe hypertension or as locally recommended.",
+      "Plan timing of delivery based on gestational age, BP control, and maternal-fetal condition.",
+      "Refer if severe features develop."
+    ],
+    "urgent_referral_needed_if": [
+      "SBP ≥160 mmHg or DBP ≥110 mmHg",
+      "Severe headache",
+      "Visual symptoms",
+      "Epigastric pain",
+      "Reduced fetal movement",
+      "Signs of pre-eclampsia"
+    ]
+  },
+  {
+    "condition_name": "Pre-eclampsia",
+    "definition": "Pre-eclampsia is hypertension after 20 weeks of pregnancy with proteinuria and/or maternal organ dysfunction or uteroplacental dysfunction.",
+    "symptoms": [
+      "High blood pressure",
+      "Headache",
+      "Visual disturbances",
+      "Swelling of face or hands",
+      "Epigastric pain",
+      "Nausea",
+      "Vomiting"
+    ],
+    "severe_symptoms": [
+      "Severe headache",
+      "Blurred vision",
+      "Severe hypertension",
+      "Oliguria",
+      "Pulmonary oedema",
+      "Low platelets",
+      "Elevated liver enzymes"
+    ],
+    "risks": [
+      "Eclampsia",
+      "HELLP syndrome",
+      "Stroke",
+      "Placental abruption",
+      "Fetal growth restriction",
+      "Preterm birth",
+      "Maternal death",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Assess blood pressure, urine protein, symptoms, and organ function.",
+      "Monitor platelets, liver enzymes, kidney function, and fetal wellbeing.",
+      "Use antihypertensives for severe hypertension.",
+      "Give magnesium sulfate if severe features or high seizure risk are present.",
+      "Plan delivery based on severity, gestational age, and maternal-fetal condition.",
+      "Refer for specialist obstetric care."
+    ],
+    "urgent_referral_needed_if": [
+      "Severe headache",
+      "Visual disturbances",
+      "Severe hypertension",
+      "Epigastric or right upper abdominal pain",
+      "Reduced urine output",
+      "Reduced fetal movement",
+      "Breathing difficulty"
+    ]
+  },
+  {
+    "condition_name": "Severe Pre-eclampsia",
+    "definition": "Severe pre-eclampsia is pre-eclampsia with severe hypertension and/or signs of significant maternal organ dysfunction.",
+    "symptoms": [
+      "Severe hypertension",
+      "Severe headache",
+      "Visual disturbances",
+      "Epigastric pain",
+      "Nausea",
+      "Vomiting",
+      "Reduced urine output"
+    ],
+    "severe_symptoms": [
+      "Pulmonary oedema",
+      "Altered consciousness",
+      "Thrombocytopenia",
+      "Renal impairment",
+      "Elevated liver enzymes",
+      "Fetal distress",
+      "Seizure warning signs"
+    ],
+    "risks": [
+      "Eclampsia",
+      "Stroke",
+      "HELLP syndrome",
+      "Placental abruption",
+      "Acute kidney injury",
+      "Maternal death",
+      "Preterm birth",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Admit or refer urgently for specialist care.",
+      "Stabilize airway, breathing, circulation, and blood pressure.",
+      "Start magnesium sulfate for seizure prevention according to protocol.",
+      "Treat severe hypertension with appropriate antihypertensive medicine.",
+      "Monitor urine output, reflexes, respiratory rate, and oxygen saturation.",
+      "Assess fetal wellbeing and plan delivery once mother is stabilized."
+    ],
+    "urgent_referral_needed_if": [
+      "Any severe pre-eclampsia feature",
+      "Severe hypertension",
+      "Severe headache",
+      "Visual symptoms",
+      "Epigastric pain",
+      "Breathing difficulty",
+      "Reduced fetal movement"
+    ]
+  },
+  {
+    "condition_name": "Eclampsia",
+    "definition": "Eclampsia is generalized tonic-clonic seizures during pregnancy or postpartum that cannot be explained by another neurological cause and is usually associated with pre-eclampsia.",
+    "symptoms": [
+      "Convulsions",
+      "High blood pressure",
+      "Severe headache",
+      "Visual disturbances",
+      "Nausea",
+      "Vomiting",
+      "Epigastric pain",
+      "Altered consciousness"
+    ],
+    "severe_symptoms": [
+      "Repeated seizures",
+      "Loss of consciousness",
+      "Respiratory distress",
+      "Pulmonary oedema",
+      "Severe hypertension",
+      "Coma",
+      "Fetal distress"
+    ],
+    "risks": [
+      "Maternal death",
+      "Stroke",
+      "Placental abruption",
+      "HELLP syndrome",
+      "Pulmonary oedema",
+      "Acute kidney injury",
+      "Preterm birth",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Protect the patient from injury during seizures.",
+      "Maintain airway and place in left lateral position.",
+      "Give magnesium sulfate as first-line anticonvulsant treatment.",
+      "Continue magnesium sulfate for 24 hours after delivery or the last seizure, whichever is later.",
+      "Treat severe hypertension.",
+      "Monitor vital signs, reflexes, urine output, and fetal wellbeing.",
+      "Arrange delivery after maternal stabilization."
+    ],
+    "urgent_referral_needed_if": [
+      "Any seizure during pregnancy or postpartum",
+      "Repeated seizures",
+      "Loss of consciousness",
+      "Respiratory distress",
+      "Severe hypertension",
+      "Suspected stroke",
+      "Fetal distress"
+    ]
+  },
+  {
+    "condition_name": "HELLP Syndrome",
+    "definition": "HELLP syndrome is a severe form of pre-eclampsia characterized by haemolysis, elevated liver enzymes, and low platelet count.",
+    "symptoms": [
+      "Right upper abdominal pain",
+      "Epigastric pain",
+      "Nausea",
+      "Vomiting",
+      "Headache",
+      "Malaise",
+      "High blood pressure"
+    ],
+    "severe_symptoms": [
+      "Severe abdominal pain",
+      "Bleeding tendency",
+      "Jaundice",
+      "Severe hypertension",
+      "Altered consciousness",
+      "Seizures",
+      "Shock"
+    ],
+    "risks": [
+      "Liver rupture",
+      "DIC",
+      "Placental abruption",
+      "Acute kidney injury",
+      "Pulmonary oedema",
+      "Maternal death",
+      "Fetal distress",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Refer urgently for hospital and specialist obstetric care.",
+      "Check complete blood count, platelets, liver enzymes, kidney function, and coagulation profile.",
+      "Stabilize blood pressure and maternal condition.",
+      "Give magnesium sulfate if pre-eclampsia/eclampsia risk is present.",
+      "Transfuse blood products if clinically indicated.",
+      "Plan delivery after stabilization depending on gestational age and severity."
+    ],
+    "urgent_referral_needed_if": [
+      "Suspected HELLP syndrome",
+      "Severe epigastric or right upper abdominal pain",
+      "Low platelets",
+      "Bleeding",
+      "Seizures",
+      "Severe hypertension",
+      "Reduced fetal movement"
+    ]
+  },
+  {
+    "condition_name": "Gestational Diabetes Mellitus",
+    "definition": "Gestational diabetes mellitus is glucose intolerance first recognized during pregnancy.",
+    "symptoms": [
+      "Often asymptomatic",
+      "Excessive thirst",
+      "Frequent urination",
+      "Fatigue",
+      "Recurrent infections",
+      "Large-for-date uterus"
+    ],
+    "severe_symptoms": [
+      "Very high blood glucose",
+      "Ketones in urine",
+      "Dehydration",
+      "Vomiting",
+      "Altered consciousness",
+      "Reduced fetal movement"
+    ],
+    "risks": [
+      "Macrosomia",
+      "Shoulder dystocia",
+      "Birth injury",
+      "Pre-eclampsia",
+      "Polyhydramnios",
+      "Preterm birth",
+      "Neonatal hypoglycaemia",
+      "Future type 2 diabetes"
+    ],
+    "treatment": [
+      "Screen using local antenatal diabetes testing protocol.",
+      "Advise healthy diet and safe physical activity.",
+      "Monitor blood glucose regularly.",
+      "Use insulin or other recommended therapy if glucose targets are not met.",
+      "Monitor fetal growth and amniotic fluid.",
+      "Plan delivery based on glucose control and fetal size."
+    ],
+    "urgent_referral_needed_if": [
+      "Very high blood glucose",
+      "Ketones in urine",
+      "Vomiting with dehydration",
+      "Reduced fetal movement",
+      "Signs of pre-eclampsia",
+      "Suspected macrosomia complication"
+    ]
+  },
+  {
+    "condition_name": "Iron Deficiency Anaemia",
+    "definition": "Iron deficiency anaemia in pregnancy occurs when iron deficiency causes low haemoglobin; anaemia is commonly defined as Hb below 11 g/dL in the first and third trimester and below 10.5 g/dL in the second trimester.",
+    "symptoms": [
+      "Fatigue",
+      "Weakness",
+      "Dizziness",
+      "Pallor of conjunctivae",
+      "Pallor of palms and soles",
+      "Shortness of breath on exertion",
+      "Tachycardia"
+    ],
+    "severe_symptoms": [
+      "Intense pallor",
+      "Severe shortness of breath",
+      "Chest pain",
+      "Fainting",
+      "Impaired consciousness",
+      "Hb below 7 g/dL"
+    ],
+    "risks": [
+      "Preterm birth",
+      "Low birth weight",
+      "Fetal growth restriction",
+      "Postpartum haemorrhage complications",
+      "Maternal heart failure in severe cases"
+    ],
+    "treatment": [
+      "Give oral iron and folic acid supplementation according to local guideline.",
+      "Advise iron-rich foods such as meat, fish, eggs, beans, lentils, and green leafy vegetables.",
+      "Avoid tea or coffee close to iron tablet intake.",
+      "Give vitamin C or vitamin C-rich foods to improve absorption.",
+      "Screen and treat causes such as hookworm or malaria where relevant.",
+      "Severe anaemia may require hospital management, IV iron, or blood transfusion."
+    ],
+    "urgent_referral_needed_if": [
+      "Hb below 7 g/dL",
+      "Severe shortness of breath",
+      "Chest pain",
+      "Fainting",
+      "Impaired consciousness",
+      "Signs of heart failure"
+    ]
+  },
+  {
+    "condition_name": "Urinary Tract Infection (UTI)",
+    "definition": "A urinary tract infection is a bacterial infection of the urinary tract during pregnancy, including asymptomatic bacteriuria and acute cystitis.",
+    "symptoms": [
+      "Painful urination",
+      "Frequent urination",
+      "Urgency",
+      "Burning during urination",
+      "Lower abdominal pain",
+      "Cloudy urine",
+      "Foul-smelling urine"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Flank pain",
+      "Chills",
+      "Nausea and vomiting",
+      "Signs of sepsis",
+      "Dehydration"
+    ],
+    "risks": [
+      "Pyelonephritis",
+      "Maternal sepsis",
+      "Preterm labour",
+      "Preterm birth",
+      "Low birth weight",
+      "Kidney complications"
+    ],
+    "treatment": [
+      "Perform urine dipstick and urine culture where available.",
+      "Treat with pregnancy-safe antibiotics according to local guideline and culture result.",
+      "Encourage adequate fluid intake.",
+      "Advise regular bladder emptying.",
+      "Review if symptoms do not improve within 48–72 hours.",
+      "Screen and treat asymptomatic bacteriuria where recommended."
+    ],
+    "urgent_referral_needed_if": [
+      "High fever",
+      "Flank pain",
+      "Persistent vomiting",
+      "Signs of sepsis",
+      "No improvement after treatment",
+      "Preterm labour symptoms",
+      "Reduced fetal movement"
+    ]
+  },
+  {
+    "condition_name": "Pyelonephritis",
+    "definition": "Pyelonephritis is an infection of the kidney during pregnancy and is usually considered a serious upper urinary tract infection.",
+    "symptoms": [
+      "Fever",
+      "Flank pain",
+      "Chills",
+      "Nausea",
+      "Vomiting",
+      "Painful urination",
+      "Malaise"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Sepsis",
+      "Septic shock",
+      "Dehydration",
+      "Respiratory distress",
+      "Reduced urine output"
+    ],
+    "risks": [
+      "Maternal sepsis",
+      "Preterm labour",
+      "Preterm birth",
+      "Acute kidney injury",
+      "Anaemia",
+      "Respiratory complications"
+    ],
+    "treatment": [
+      "Admit to hospital or refer urgently in most cases.",
+      "Start IV or IM pregnancy-safe antibiotics according to local guideline.",
+      "Give IV fluids if dehydrated.",
+      "Monitor temperature, blood pressure, urine output, and symptoms.",
+      "Send urine culture before antibiotics when possible.",
+      "Switch to oral antibiotics after clinical improvement to complete full course."
+    ],
+    "urgent_referral_needed_if": [
+      "Suspected pyelonephritis in pregnancy",
+      "High fever",
+      "Flank pain",
+      "Persistent vomiting",
+      "Sepsis signs",
+      "Respiratory distress",
+      "Preterm contractions"
+    ]
+  },
+  {
+    "condition_name": "Syphilis in Pregnancy",
+    "definition": "Syphilis is a sexually transmitted bacterial infection caused by Treponema pallidum that can be transmitted to the fetus during pregnancy.",
+    "symptoms": [
+      "May be asymptomatic",
+      "Painless genital ulcer",
+      "Skin rash",
+      "Fever",
+      "Swollen lymph nodes",
+      "Fatigue",
+      "Mucous membrane lesions"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Neurological symptoms",
+      "Severe systemic illness",
+      "Signs of fetal compromise"
+    ],
+    "risks": [
+      "Miscarriage",
+      "Stillbirth",
+      "Preterm birth",
+      "Fetal growth restriction",
+      "Neonatal death",
+      "Congenital syphilis"
+    ],
+    "treatment": [
+      "Use benzathine penicillin G as recommended treatment during pregnancy.",
+      "Treat according to syphilis stage and local guideline.",
+      "Evaluate and treat sexual partners.",
+      "Monitor for Jarisch-Herxheimer reaction after treatment.",
+      "Pregnant women with penicillin allergy should be referred for penicillin desensitization and penicillin treatment.",
+      "Arrange follow-up serology."
+    ],
+    "urgent_referral_needed_if": [
+      "Reduced fetal movement",
+      "Suspected fetal distress",
+      "Preterm labour symptoms",
+      "Severe systemic infection",
+      "Neurological symptoms",
+      "Severe allergic reaction"
+    ]
+  },
+  {
+    "condition_name": "Gonorrhoea in Pregnancy",
+    "definition": "Gonorrhoea is a sexually transmitted bacterial infection caused by Neisseria gonorrhoeae that may affect the mother and newborn.",
+    "symptoms": [
+      "May be asymptomatic",
+      "Abnormal vaginal discharge",
+      "Painful urination",
+      "Pelvic pain",
+      "Lower abdominal pain",
+      "Pain during sex",
+      "Bleeding between periods"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Severe pelvic pain",
+      "Signs of pelvic inflammatory disease",
+      "Signs of systemic infection"
+    ],
+    "risks": [
+      "Premature rupture of membranes",
+      "Preterm labour",
+      "Chorioamnionitis",
+      "Postpartum infection",
+      "Neonatal conjunctivitis",
+      "Neonatal sepsis",
+      "Low birth weight"
+    ],
+    "treatment": [
+      "Treat with pregnancy-safe antibiotic regimen according to current local guideline.",
+      "Evaluate for chlamydia and other sexually transmitted infections.",
+      "Treat sexual partners to prevent reinfection.",
+      "Advise abstinence from sexual activity until treatment is completed and partners are treated.",
+      "Arrange follow-up testing when indicated."
+    ],
+    "urgent_referral_needed_if": [
+      "High fever",
+      "Severe pelvic or abdominal pain",
+      "Signs of sepsis",
+      "Suspected pelvic inflammatory disease",
+      "PROM",
+      "Preterm labour symptoms",
+      "Reduced fetal movement"
+    ]
+  },
+  {
+    "condition_name": "Chorioamnionitis",
+    "definition": "Chorioamnionitis is infection and inflammation of the fetal membranes and amniotic fluid, usually occurring during labour or after membrane rupture.",
+    "symptoms": [
+      "Maternal fever",
+      "Uterine tenderness",
+      "Foul-smelling amniotic fluid",
+      "Maternal tachycardia",
+      "Fetal tachycardia",
+      "Lower abdominal pain"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Sepsis",
+      "Septic shock",
+      "Severe uterine tenderness",
+      "Altered consciousness",
+      "Fetal distress"
+    ],
+    "risks": [
+      "Maternal sepsis",
+      "Postpartum endometritis",
+      "Preterm birth",
+      "Neonatal sepsis",
+      "Fetal distress",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Refer urgently for hospital obstetric management.",
+      "Start broad-spectrum IV antibiotics according to local guideline.",
+      "Monitor maternal vital signs and fetal heart rate.",
+      "Plan delivery based on maternal and fetal condition.",
+      "Provide fluids, antipyretics, and supportive care.",
+      "Assess newborn for infection after delivery."
+    ],
+    "urgent_referral_needed_if": [
+      "Maternal fever with uterine tenderness",
+      "Foul-smelling liquor",
+      "Fetal tachycardia",
+      "Signs of sepsis",
+      "PROM with fever",
+      "Fetal distress"
+    ]
+  },
+  {
+    "condition_name": "Malaria in Pregnancy",
+    "definition": "Malaria in pregnancy is infection with Plasmodium parasites during pregnancy and can cause severe maternal and fetal complications.",
+    "symptoms": [
+      "Fever",
+      "Chills",
+      "Sweating",
+      "Headache",
+      "Body ache",
+      "Nausea",
+      "Vomiting",
+      "Weakness"
+    ],
+    "severe_symptoms": [
+      "Severe anaemia",
+      "Altered consciousness",
+      "Convulsions",
+      "Respiratory distress",
+      "Jaundice",
+      "Hypoglycaemia",
+      "Shock"
+    ],
+    "risks": [
+      "Maternal anaemia",
+      "Miscarriage",
+      "Preterm birth",
+      "Low birth weight",
+      "Fetal growth restriction",
+      "Stillbirth",
+      "Maternal death in severe malaria"
+    ],
+    "treatment": [
+      "Test for malaria promptly in endemic areas.",
+      "Treat confirmed malaria with pregnancy-appropriate antimalarial therapy according to trimester and local guideline.",
+      "Give antipyretics and fluids as needed.",
+      "Assess and treat anaemia.",
+      "Severe malaria requires urgent hospital management with parenteral antimalarial therapy.",
+      "Use preventive measures in endemic areas."
+    ],
+    "urgent_referral_needed_if": [
+      "Severe malaria signs",
+      "Altered consciousness",
+      "Convulsions",
+      "Severe anaemia",
+      "Respiratory distress",
+      "Persistent vomiting",
+      "Reduced fetal movement"
+    ]
+  },
+  {
+    "condition_name": "Polyhydramnios",
+    "definition": "Polyhydramnios is excessive accumulation of amniotic fluid during pregnancy, commonly diagnosed by ultrasound.",
+    "symptoms": [
+      "Rapid increase in uterine size",
+      "Abdominal enlargement",
+      "Abdominal pressure",
+      "Abdominal discomfort",
+      "Shortness of breath",
+      "Distended uterus",
+      "Difficulty palpating the fetus"
+    ],
+    "severe_symptoms": [
+      "Severe abdominal pain",
+      "Severe shortness of breath",
+      "Rapid uterine enlargement",
+      "Marked abdominal distension",
+      "Maternal respiratory distress",
+      "Signs of preterm labour"
+    ],
+    "risks": [
+      "Preterm labour",
+      "Premature rupture of membranes",
+      "Malpresentation",
+      "Umbilical cord prolapse",
+      "Placental abruption",
+      "Postpartum haemorrhage",
+      "Fetal anomaly",
+      "Complicated multiple pregnancy"
+    ],
+    "treatment": [
+      "Monitor maternal condition and fetal wellbeing closely.",
+      "Perform ultrasound assessment of amniotic fluid volume and fetal anatomy.",
+      "Screen for gestational diabetes.",
+      "Assess for multiple pregnancy and fetal abnormalities.",
+      "Monitor for preterm labour.",
+      "Provide supportive care for discomfort and breathing difficulty.",
+      "Refer for specialist obstetric assessment if moderate or severe."
+    ],
+    "urgent_referral_needed_if": [
+      "Severe shortness of breath",
+      "Rapid increase in uterine size",
+      "Severe abdominal pain",
+      "Signs of preterm labour",
+      "PROM",
+      "Reduced fetal movement",
+      "Suspected fetal anomaly"
+    ]
+  },
+  {
+    "condition_name": "Oligohydramnios",
+    "definition": "Oligohydramnios is reduced amniotic fluid volume during pregnancy, usually diagnosed by ultrasound.",
+    "symptoms": [
+      "Small-for-date uterus",
+      "Reduced fetal movement",
+      "Leaking fluid if membranes ruptured",
+      "Abdominal discomfort",
+      "Difficulty feeling fetal movement"
+    ],
+    "severe_symptoms": [
+      "Markedly reduced fetal movement",
+      "Suspected fetal distress",
+      "Severe abdominal pain",
+      "Signs of ruptured membranes",
+      "Abnormal fetal heart rate"
+    ],
+    "risks": [
+      "Fetal growth restriction",
+      "Cord compression",
+      "Fetal distress",
+      "Preterm birth",
+      "Stillbirth",
+      "Pulmonary hypoplasia if very early and severe"
+    ],
+    "treatment": [
+      "Confirm by ultrasound and assess fetal growth.",
+      "Evaluate for ruptured membranes, placental insufficiency, and fetal anomalies.",
+      "Monitor fetal wellbeing closely.",
+      "Encourage adequate maternal hydration where appropriate.",
+      "Plan timing of delivery depending on gestational age and fetal condition.",
+      "Refer for specialist obstetric care."
+    ],
+    "urgent_referral_needed_if": [
+      "Reduced fetal movement",
+      "Suspected fetal distress",
+      "Ruptured membranes",
+      "Severe oligohydramnios",
+      "Abnormal fetal heart rate",
+      "Signs of labour before term"
+    ]
+  },
+  {
+    "condition_name": "Placenta Previa",
+    "definition": "Placenta previa occurs when the placenta partly or completely covers the internal cervical opening after mid-pregnancy.",
+    "symptoms": [
+      "Painless vaginal bleeding in second or third trimester",
+      "Bright red bleeding",
+      "Recurrent bleeding",
+      "Usually no abdominal pain"
+    ],
+    "severe_symptoms": [
+      "Heavy vaginal bleeding",
+      "Shock",
+      "Contractions with bleeding",
+      "Fetal distress",
+      "Severe anaemia"
+    ],
+    "risks": [
+      "Major haemorrhage",
+      "Preterm birth",
+      "Need for caesarean delivery",
+      "Placenta accreta spectrum",
+      "Maternal shock",
+      "Fetal compromise"
+    ],
+    "treatment": [
+      "Confirm placental location with ultrasound.",
+      "Avoid digital vaginal examination until placenta previa is excluded.",
+      "Monitor bleeding, maternal vitals, and fetal wellbeing.",
+      "Give anti-D to Rh-negative women when indicated.",
+      "Hospitalize or refer if bleeding occurs.",
+      "Plan delivery mode and timing with specialist obstetric team."
+    ],
+    "urgent_referral_needed_if": [
+      "Any painless bleeding after mid-pregnancy",
+      "Heavy bleeding",
+      "Shock",
+      "Reduced fetal movement",
+      "Contractions with bleeding",
+      "Known placenta previa with bleeding"
+    ]
+  },
+  {
+    "condition_name": "Placental Abruption",
+    "definition": "Placental abruption is premature separation of the placenta from the uterine wall before delivery.",
+    "symptoms": [
+      "Vaginal bleeding",
+      "Abdominal pain",
+      "Back pain",
+      "Uterine tenderness",
+      "Frequent contractions",
+      "Reduced fetal movement"
+    ],
+    "severe_symptoms": [
+      "Severe abdominal pain",
+      "Rigid tender uterus",
+      "Heavy bleeding or concealed bleeding",
+      "Shock",
+      "Fetal distress",
+      "DIC"
+    ],
+    "risks": [
+      "Maternal haemorrhage",
+      "Shock",
+      "DIC",
+      "Preterm birth",
+      "Fetal distress",
+      "Stillbirth",
+      "Maternal death"
+    ],
+    "treatment": [
+      "Treat as obstetric emergency.",
+      "Assess vital signs, bleeding, abdominal tenderness, and fetal heart rate.",
+      "Start IV access, fluids, blood tests, and crossmatch where available.",
+      "Monitor for coagulopathy.",
+      "Plan urgent delivery depending on maternal and fetal condition.",
+      "Refer urgently to hospital."
+    ],
+    "urgent_referral_needed_if": [
+      "Any suspected abruption",
+      "Abdominal pain with bleeding",
+      "Rigid tender uterus",
+      "Shock",
+      "Reduced fetal movement",
+      "Fetal distress",
+      "Heavy bleeding"
+    ]
+  },
+  {
+    "condition_name": "Placenta Accreta Spectrum",
+    "definition": "Placenta accreta spectrum is abnormal adherence or invasion of the placenta into the uterine wall.",
+    "symptoms": [
+      "Often asymptomatic before delivery",
+      "Placenta previa may be present",
+      "Antenatal bleeding may occur",
+      "Failure of placenta to separate after delivery"
+    ],
+    "severe_symptoms": [
+      "Massive postpartum haemorrhage",
+      "Shock",
+      "Retained placenta",
+      "Severe anaemia",
+      "Coagulopathy"
+    ],
+    "risks": [
+      "Severe haemorrhage",
+      "Blood transfusion",
+      "Hysterectomy",
+      "Bladder or organ injury",
+      "Maternal morbidity",
+      "Preterm birth"
+    ],
+    "treatment": [
+      "Identify risk factors such as previous caesarean and placenta previa.",
+      "Diagnose using ultrasound and specialist imaging when needed.",
+      "Plan delivery in a facility with blood bank and experienced surgical team.",
+      "Avoid manual removal if accreta is strongly suspected.",
+      "Prepare for haemorrhage management and possible hysterectomy.",
+      "Provide multidisciplinary specialist care."
+    ],
+    "urgent_referral_needed_if": [
+      "Suspected accreta with bleeding",
+      "Placenta previa with previous caesarean",
+      "Retained placenta with heavy bleeding",
+      "Shock",
+      "Massive postpartum haemorrhage"
+    ]
+  },
+  {
+    "condition_name": "Fetal Growth Restriction (FGR/IUGR)",
+    "definition": "Fetal growth restriction is when a fetus does not reach its expected growth potential, often due to placental, maternal, or fetal causes.",
+    "symptoms": [
+      "Small-for-date uterus",
+      "Reduced fetal movement",
+      "Poor fundal height growth",
+      "Often detected on ultrasound"
+    ],
+    "severe_symptoms": [
+      "Markedly reduced fetal movement",
+      "Abnormal Doppler studies",
+      "Oligohydramnios",
+      "Fetal distress",
+      "Severe maternal disease"
+    ],
+    "risks": [
+      "Stillbirth",
+      "Preterm birth",
+      "Neonatal hypoglycaemia",
+      "Low birth weight",
+      "Birth asphyxia",
+      "Long-term developmental problems"
+    ],
+    "treatment": [
+      "Confirm fetal size and growth with ultrasound.",
+      "Assess amniotic fluid and Doppler studies where available.",
+      "Identify and manage maternal causes such as hypertension or smoking.",
+      "Monitor fetal movement and fetal wellbeing.",
+      "Plan delivery timing based on gestational age and fetal condition.",
+      "Refer for specialist obstetric care."
+    ],
+    "urgent_referral_needed_if": [
+      "Reduced fetal movement",
+      "Abnormal fetal heart rate",
+      "Severe FGR",
+      "Oligohydramnios",
+      "Maternal hypertension or pre-eclampsia",
+      "Suspected fetal distress"
+    ]
+  },
+  {
+    "condition_name": "Fetal Distress",
+    "definition": "Fetal distress refers to signs that the fetus may not be receiving adequate oxygen, commonly suspected from abnormal fetal heart rate or reduced fetal movement.",
+    "symptoms": [
+      "Reduced fetal movement",
+      "Abnormal fetal heart rate",
+      "Meconium-stained liquor during labour",
+      "Poor fetal growth"
+    ],
+    "severe_symptoms": [
+      "Persistent fetal bradycardia",
+      "Recurrent late decelerations",
+      "Absent fetal movements",
+      "Severe meconium with abnormal heart rate",
+      "Acidosis if tested"
+    ],
+    "risks": [
+      "Birth asphyxia",
+      "Emergency delivery",
+      "Neonatal intensive care admission",
+      "Brain injury",
+      "Stillbirth"
+    ],
+    "treatment": [
+      "Assess fetal heart rate and maternal condition immediately.",
+      "Place mother in left lateral position and correct maternal hypotension if present.",
+      "Give oxygen only if clinically indicated by maternal condition.",
+      "Stop uterotonic infusion if excessive contractions occur.",
+      "Treat underlying cause where possible.",
+      "Arrange urgent obstetric review and delivery if distress persists."
+    ],
+    "urgent_referral_needed_if": [
+      "Absent or markedly reduced fetal movement",
+      "Persistent abnormal fetal heart rate",
+      "Meconium with abnormal fetal heart rate",
+      "Suspected cord prolapse",
+      "Maternal shock",
+      "Placental abruption"
+    ]
+  },
+  {
+    "condition_name": "Intrauterine Fetal Death (IUFD)",
+    "definition": "Intrauterine fetal death is death of the fetus before birth after the gestational age considered fetal viability or stillbirth threshold by local definition.",
+    "symptoms": [
+      "Absent fetal movement",
+      "No fetal heart sounds",
+      "Pregnancy symptoms may reduce",
+      "Uterus may measure small for dates"
+    ],
+    "severe_symptoms": [
+      "Maternal fever",
+      "Bleeding",
+      "Severe abdominal pain",
+      "Signs of infection",
+      "Coagulopathy if prolonged retention"
+    ],
+    "risks": [
+      "Maternal infection",
+      "Coagulopathy rarely",
+      "Postpartum haemorrhage",
+      "Emotional trauma",
+      "Underlying maternal disease"
+    ],
+    "treatment": [
+      "Confirm diagnosis by ultrasound.",
+      "Provide sensitive counselling and emotional support.",
+      "Investigate possible causes where appropriate.",
+      "Plan induction or delivery according to gestational age, maternal condition, and patient preference.",
+      "Monitor for infection, bleeding, and coagulopathy when indicated.",
+      "Offer bereavement support and follow-up."
+    ],
+    "urgent_referral_needed_if": [
+      "Absent fetal movement",
+      "No fetal heartbeat suspected",
+      "Bleeding",
+      "Fever",
+      "Severe abdominal pain",
+      "Signs of sepsis"
+    ]
+  },
+  {
+    "condition_name": "Preterm Labour",
+    "definition": "Preterm labour is regular uterine contractions with cervical change before 37 completed weeks of pregnancy.",
+    "symptoms": [
+      "Regular contractions before 37 weeks",
+      "Lower abdominal cramping",
+      "Backache",
+      "Pelvic pressure",
+      "Vaginal discharge change",
+      "Light bleeding"
+    ],
+    "severe_symptoms": [
+      "Strong frequent contractions",
+      "Ruptured membranes",
+      "Heavy bleeding",
+      "Fever",
+      "Fetal distress",
+      "Advanced cervical dilatation"
+    ],
+    "risks": [
+      "Preterm birth",
+      "Neonatal respiratory distress",
+      "Infection",
+      "Low birth weight",
+      "Neonatal intensive care admission",
+      "Perinatal death"
+    ],
+    "treatment": [
+      "Assess gestational age, contractions, cervical change, membranes, and fetal wellbeing.",
+      "Refer for obstetric assessment.",
+      "Give antenatal corticosteroids when indicated for fetal lung maturity.",
+      "Use tocolysis when appropriate and not contraindicated.",
+      "Give magnesium sulfate for fetal neuroprotection when indicated by gestational age.",
+      "Treat infection if present."
+    ],
+    "urgent_referral_needed_if": [
+      "Contractions before 37 weeks",
+      "Ruptured membranes",
+      "Bleeding",
+      "Fever",
+      "Reduced fetal movement",
+      "Severe abdominal pain",
+      "Signs of active labour"
+    ]
+  },
+  {
+    "condition_name": "Premature Rupture of Membranes (PROM)",
+    "definition": "PROM is rupture of fetal membranes before onset of labour at or after 37 weeks of pregnancy.",
+    "symptoms": [
+      "Sudden gush of fluid from vagina",
+      "Continuous leaking fluid",
+      "Wet underwear",
+      "Mild contractions may occur"
+    ],
+    "severe_symptoms": [
+      "Fever",
+      "Foul-smelling fluid",
+      "Uterine tenderness",
+      "Fetal tachycardia",
+      "Meconium-stained fluid",
+      "Cord prolapse"
+    ],
+    "risks": [
+      "Chorioamnionitis",
+      "Neonatal infection",
+      "Cord prolapse",
+      "Labour complications",
+      "Postpartum infection"
+    ],
+    "treatment": [
+      "Confirm rupture of membranes and assess fetal wellbeing.",
+      "Avoid unnecessary digital vaginal examinations.",
+      "Monitor temperature, pulse, uterine tenderness, and fetal heart rate.",
+      "Manage according to gestational age and infection risk.",
+      "Use antibiotics if infection is suspected or according to local protocol.",
+      "Plan induction or delivery according to guideline."
+    ],
+    "urgent_referral_needed_if": [
+      "Rupture of membranes",
+      "Fever",
+      "Foul-smelling fluid",
+      "Reduced fetal movement",
+      "Cord visible or felt",
+      "Meconium-stained fluid",
+      "Heavy bleeding"
+    ]
+  },
+  {
+    "condition_name": "Preterm Premature Rupture of Membranes (PPROM)",
+    "definition": "PPROM is rupture of fetal membranes before onset of labour and before 37 completed weeks of pregnancy.",
+    "symptoms": [
+      "Leaking fluid before 37 weeks",
+      "Sudden gush of fluid",
+      "Pelvic pressure",
+      "Mild contractions",
+      "Change in vaginal discharge"
+    ],
+    "severe_symptoms": [
+      "Fever",
+      "Foul-smelling fluid",
+      "Uterine tenderness",
+      "Fetal distress",
+      "Cord prolapse",
+      "Preterm labour"
+    ],
+    "risks": [
+      "Preterm birth",
+      "Chorioamnionitis",
+      "Neonatal sepsis",
+      "Cord prolapse",
+      "Placental abruption",
+      "Pulmonary hypoplasia if very early"
+    ],
+    "treatment": [
+      "Refer for hospital obstetric assessment.",
+      "Confirm membrane rupture and assess gestational age.",
+      "Avoid digital vaginal examination unless delivery is imminent.",
+      "Monitor for infection and fetal wellbeing.",
+      "Give antibiotics and antenatal corticosteroids when indicated.",
+      "Give magnesium sulfate for fetal neuroprotection when indicated.",
+      "Plan timing of delivery based on gestational age and infection or fetal risk."
+    ],
+    "urgent_referral_needed_if": [
+      "Any fluid leakage before 37 weeks",
+      "Fever",
+      "Foul-smelling fluid",
+      "Contractions",
+      "Reduced fetal movement",
+      "Cord prolapse",
+      "Bleeding"
+    ]
+  },
+  {
+    "condition_name": "Malpresentation (Breech/Transverse Lie)",
+    "definition": "Malpresentation occurs when the fetus is not in a normal head-first position near term, such as breech or transverse lie.",
+    "symptoms": [
+      "Abnormal fetal position on abdominal examination",
+      "Hard fetal head felt in upper uterus",
+      "Difficulty engaging presenting part",
+      "Often asymptomatic"
+    ],
+    "severe_symptoms": [
+      "Labour with transverse lie",
+      "Ruptured membranes with high presenting part",
+      "Cord prolapse",
+      "Obstructed labour",
+      "Fetal distress"
+    ],
+    "risks": [
+      "Obstructed labour",
+      "Cord prolapse",
+      "Birth trauma",
+      "Emergency caesarean section",
+      "Perinatal asphyxia"
+    ],
+    "treatment": [
+      "Confirm presentation by clinical examination and ultrasound.",
+      "Assess gestational age and fetal condition.",
+      "Consider external cephalic version near term when appropriate and no contraindication.",
+      "Plan safe mode of delivery based on presentation, parity, fetal size, and facility capability.",
+      "Refer for specialist obstetric care if persistent malpresentation."
+    ],
+    "urgent_referral_needed_if": [
+      "Transverse lie in labour",
+      "Ruptured membranes",
+      "Cord prolapse",
+      "Fetal distress",
+      "Labour with breech presentation where skilled care unavailable",
+      "Severe abdominal pain"
+    ]
+  },
+  {
+    "condition_name": "Cord Prolapse",
+    "definition": "Cord prolapse occurs when the umbilical cord descends through the cervix beside or before the presenting fetal part after membrane rupture.",
+    "symptoms": [
+      "Cord visible at vulva",
+      "Cord felt in vagina",
+      "Sudden fetal heart rate abnormality after membrane rupture",
+      "Ruptured membranes"
+    ],
+    "severe_symptoms": [
+      "Persistent fetal bradycardia",
+      "Cord compression",
+      "Fetal distress",
+      "Absent fetal heart rate",
+      "Maternal panic or emergency labour situation"
+    ],
+    "risks": [
+      "Fetal hypoxia",
+      "Birth asphyxia",
+      "Emergency caesarean delivery",
+      "Stillbirth",
+      "Neonatal death"
+    ],
+    "treatment": [
+      "Call for emergency obstetric help immediately.",
+      "Avoid handling the cord excessively.",
+      "Relieve cord compression by elevating presenting part manually if trained.",
+      "Place mother in knee-chest or left lateral head-down position while preparing delivery.",
+      "Keep exposed cord moist with sterile saline gauze if visible.",
+      "Arrange immediate delivery, usually emergency caesarean unless vaginal birth is imminent."
+    ],
+    "urgent_referral_needed_if": [
+      "Any suspected cord prolapse",
+      "Cord visible or felt",
+      "Sudden fetal bradycardia after membrane rupture",
+      "Ruptured membranes with high presenting part",
+      "Fetal distress"
+    ]
+  },
+  {
+    "condition_name": "Obstructed Labour",
+    "definition": "Obstructed labour occurs when the fetus cannot progress through the birth canal despite strong uterine contractions.",
+    "symptoms": [
+      "Prolonged labour",
+      "Strong contractions without progress",
+      "Maternal exhaustion",
+      "Severe abdominal pain",
+      "Failure of fetal descent",
+      "Full bladder or difficulty urinating"
+    ],
+    "severe_symptoms": [
+      "Bandl's ring",
+      "Uterine rupture signs",
+      "Fetal distress",
+      "Maternal shock",
+      "Sepsis",
+      "Obstetric fistula risk"
+    ],
+    "risks": [
+      "Uterine rupture",
+      "Postpartum haemorrhage",
+      "Maternal sepsis",
+      "Obstetric fistula",
+      "Fetal distress",
+      "Stillbirth",
+      "Maternal death"
+    ],
+    "treatment": [
+      "Recognize prolonged labour early using partograph or labour monitoring.",
+      "Assess maternal vital signs, contractions, fetal heart rate, and labour progress.",
+      "Do not continue labour if obstruction is suspected.",
+      "Give IV fluids and antibiotics if infection suspected.",
+      "Arrange urgent operative delivery by skilled team.",
+      "Refer urgently to comprehensive emergency obstetric care."
+    ],
+    "urgent_referral_needed_if": [
+      "No progress in labour despite strong contractions",
+      "Fetal distress",
+      "Severe abdominal pain",
+      "Maternal exhaustion",
+      "Signs of rupture",
+      "Shock",
+      "Fever"
+    ]
+  },
+  {
+    "condition_name": "Uterine Rupture",
+    "definition": "Uterine rupture is tearing of the uterine wall during pregnancy or labour, more common in women with previous uterine surgery.",
+    "symptoms": [
+      "Sudden severe abdominal pain",
+      "Vaginal bleeding",
+      "Cessation of contractions",
+      "Loss of fetal station",
+      "Abnormal fetal heart rate",
+      "Maternal tachycardia"
+    ],
+    "severe_symptoms": [
+      "Maternal shock",
+      "Severe internal bleeding",
+      "Fetal distress or death",
+      "Palpable fetal parts in abdomen",
+      "Loss of consciousness"
+    ],
+    "risks": [
+      "Maternal haemorrhage",
+      "Maternal death",
+      "Fetal death",
+      "Hysterectomy",
+      "Bladder injury",
+      "Sepsis"
+    ],
+    "treatment": [
+      "Treat as life-threatening obstetric emergency.",
+      "Resuscitate with IV fluids, blood products, and oxygen as needed.",
+      "Arrange immediate laparotomy and delivery.",
+      "Monitor maternal vital signs and fetal condition.",
+      "Prepare for uterine repair or hysterectomy depending on injury and bleeding.",
+      "Refer to emergency obstetric surgical facility immediately."
+    ],
+    "urgent_referral_needed_if": [
+      "Suspected uterine rupture",
+      "Sudden severe abdominal pain in labour",
+      "Shock",
+      "Abnormal fetal heart rate",
+      "Previous caesarean with labour pain and bleeding",
+      "Loss of fetal station"
+    ]
+  },
+  {
+    "condition_name": "Shoulder Dystocia",
+    "definition": "Shoulder dystocia is an obstetric emergency where the fetal shoulders fail to deliver after the head due to impaction behind the maternal pelvis.",
+    "symptoms": [
+      "Difficulty delivering shoulders after head",
+      "Turtle sign",
+      "Prolonged head-to-body delivery interval",
+      "Failure of routine traction"
+    ],
+    "severe_symptoms": [
+      "Fetal distress",
+      "Severe delay in delivery",
+      "Neonatal depression",
+      "Maternal soft tissue trauma",
+      "Postpartum haemorrhage"
+    ],
+    "risks": [
+      "Birth asphyxia",
+      "Brachial plexus injury",
+      "Clavicle or humerus fracture",
+      "Postpartum haemorrhage",
+      "Perineal trauma",
+      "Neonatal death rarely"
+    ],
+    "treatment": [
+      "Call for help immediately.",
+      "Avoid excessive traction on fetal head.",
+      "Use McRoberts manoeuvre and suprapubic pressure first.",
+      "Proceed to internal manoeuvres if needed by trained provider.",
+      "Prepare for neonatal resuscitation.",
+      "Document timing, manoeuvres, and outcome."
+    ],
+    "urgent_referral_needed_if": [
+      "Shoulders not delivered after fetal head",
+      "Turtle sign",
+      "Fetal distress",
+      "Need for advanced obstetric manoeuvres",
+      "Neonatal resuscitation required"
+    ]
+  },
+  {
+    "condition_name": "Postpartum Haemorrhage (PPH)",
+    "definition": "Postpartum haemorrhage is excessive bleeding after birth, commonly defined as blood loss of 500 mL or more after vaginal birth or 1000 mL or more after caesarean birth, or any bleeding causing instability.",
+    "symptoms": [
+      "Heavy vaginal bleeding after delivery",
+      "Passing large clots",
+      "Dizziness",
+      "Weakness",
+      "Pale skin",
+      "Fast pulse"
+    ],
+    "severe_symptoms": [
+      "Shock",
+      "Very low blood pressure",
+      "Loss of consciousness",
+      "Continued heavy bleeding",
+      "Uterine atony",
+      "Coagulopathy"
+    ],
+    "risks": [
+      "Severe anaemia",
+      "Hypovolemic shock",
+      "Blood transfusion",
+      "Hysterectomy",
+      "Maternal death"
+    ],
+    "treatment": [
+      "Call for help and assess airway, breathing, and circulation.",
+      "Massage uterus and give uterotonic medicine according to protocol.",
+      "Establish IV access and give fluids or blood products as needed.",
+      "Identify cause using tone, trauma, tissue, and thrombin approach.",
+      "Remove retained tissue and repair trauma when indicated.",
+      "Refer urgently if bleeding continues or surgical care is needed."
+    ],
+    "urgent_referral_needed_if": [
+      "Heavy bleeding after birth",
+      "Signs of shock",
+      "Bleeding not responding to uterine massage and uterotonics",
+      "Retained placenta",
+      "Genital tract trauma",
+      "Loss of consciousness"
+    ]
+  },
+  {
+    "condition_name": "Retained Placenta",
+    "definition": "Retained placenta occurs when the placenta is not delivered within the expected time after birth or when placental tissue remains inside the uterus.",
+    "symptoms": [
+      "Placenta not delivered",
+      "Postpartum bleeding",
+      "Uterine cramping",
+      "Incomplete placenta on inspection",
+      "Uterus may be enlarged or soft"
+    ],
+    "severe_symptoms": [
+      "Heavy postpartum haemorrhage",
+      "Shock",
+      "Severe abdominal pain",
+      "Fever later",
+      "Signs of infection"
+    ],
+    "risks": [
+      "Postpartum haemorrhage",
+      "Puerperal sepsis",
+      "Anaemia",
+      "Need for manual removal or surgery",
+      "Maternal shock"
+    ],
+    "treatment": [
+      "Assess bleeding and maternal vital signs.",
+      "Give uterotonic medicines as indicated.",
+      "Do controlled cord traction only by trained provider when appropriate.",
+      "Do not pull forcefully on cord.",
+      "Manual removal under appropriate analgesia/anaesthesia may be required.",
+      "Give antibiotics according to local protocol if manual removal or infection risk.",
+      "Refer urgently if bleeding or placenta remains retained."
+    ],
+    "urgent_referral_needed_if": [
+      "Placenta retained with bleeding",
+      "Heavy postpartum bleeding",
+      "Shock",
+      "Suspected placenta accreta",
+      "Fever",
+      "Severe abdominal pain"
+    ]
+  },
+  {
+    "condition_name": "Puerperal Sepsis",
+    "definition": "Puerperal sepsis is infection of the genital tract occurring after delivery or miscarriage, usually within 42 days postpartum.",
+    "symptoms": [
+      "Fever",
+      "Lower abdominal pain",
+      "Foul-smelling lochia",
+      "Chills",
+      "Uterine tenderness",
+      "Malaise"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Sepsis",
+      "Septic shock",
+      "Altered consciousness",
+      "Severe abdominal pain",
+      "Fast breathing"
+    ],
+    "risks": [
+      "Septic shock",
+      "Pelvic abscess",
+      "Infertility",
+      "DIC",
+      "Maternal death"
+    ],
+    "treatment": [
+      "Assess vital signs and signs of sepsis urgently.",
+      "Start broad-spectrum antibiotics according to local guideline.",
+      "Give IV fluids and supportive care if unwell.",
+      "Evaluate for retained products, endometritis, wound infection, or abscess.",
+      "Remove retained products if present after stabilization.",
+      "Refer urgently for hospital management if severe."
+    ],
+    "urgent_referral_needed_if": [
+      "Fever after birth with foul-smelling lochia",
+      "Severe abdominal pain",
+      "Signs of sepsis",
+      "Shock",
+      "Altered consciousness",
+      "Heavy bleeding",
+      "No improvement with treatment"
+    ]
+  },
+  {
+    "condition_name": "Postpartum Endometritis",
+    "definition": "Postpartum endometritis is infection of the uterine lining after childbirth, more common after caesarean delivery or prolonged rupture of membranes.",
+    "symptoms": [
+      "Fever",
+      "Lower abdominal pain",
+      "Uterine tenderness",
+      "Foul-smelling lochia",
+      "Malaise",
+      "Chills"
+    ],
+    "severe_symptoms": [
+      "High fever",
+      "Severe pelvic pain",
+      "Sepsis",
+      "Tachycardia",
+      "Hypotension",
+      "Persistent fever despite antibiotics"
+    ],
+    "risks": [
+      "Puerperal sepsis",
+      "Pelvic abscess",
+      "Septic pelvic thrombophlebitis",
+      "Infertility rarely",
+      "Maternal morbidity"
+    ],
+    "treatment": [
+      "Assess postpartum fever and uterine tenderness.",
+      "Start broad-spectrum antibiotics according to local guideline.",
+      "Monitor temperature, pulse, pain, and lochia.",
+      "Evaluate for retained products or wound infection if not improving.",
+      "Provide fluids, analgesia, and supportive care.",
+      "Refer if severe or persistent infection."
+    ],
+    "urgent_referral_needed_if": [
+      "High fever",
+      "Severe pelvic pain",
+      "Signs of sepsis",
+      "Persistent fever",
+      "Foul-smelling lochia with weakness",
+      "Hypotension"
+    ]
+  },
+  {
+    "condition_name": "Mastitis",
+    "definition": "Mastitis is inflammation or infection of breast tissue during breastfeeding, often associated with milk stasis.",
+    "symptoms": [
+      "Breast pain",
+      "Breast redness",
+      "Swelling",
+      "Warmth over breast",
+      "Fever",
+      "Flu-like symptoms",
+      "Tender lump"
+    ],
+    "severe_symptoms": [
+      "Breast abscess",
+      "High fever",
+      "Severe pain",
+      "Pus discharge",
+      "Spreading redness",
+      "Systemic illness"
+    ],
+    "risks": [
+      "Breast abscess",
+      "Reduced breastfeeding",
+      "Recurrent infection",
+      "Maternal discomfort",
+      "Sepsis rarely"
+    ],
+    "treatment": [
+      "Continue breastfeeding or milk expression unless advised otherwise.",
+      "Ensure proper latch and frequent milk drainage.",
+      "Use warm compresses before feeding and analgesics as appropriate.",
+      "Give antibiotics if bacterial mastitis is suspected or symptoms are severe/persistent.",
+      "Assess for abscess if localized swelling or no improvement.",
+      "Encourage rest and fluids."
+    ],
+    "urgent_referral_needed_if": [
+      "Suspected breast abscess",
+      "High fever",
+      "Severe pain",
+      "Spreading redness",
+      "No improvement within 24–48 hours",
+      "Systemic illness"
+    ]
+  },
+  {
+    "condition_name": "Postpartum Depression",
+    "definition": "Postpartum depression is a depressive disorder occurring after childbirth that causes persistent low mood, loss of interest, and impaired functioning.",
+    "symptoms": [
+      "Persistent sadness",
+      "Loss of interest",
+      "Fatigue",
+      "Sleep problems",
+      "Poor appetite or overeating",
+      "Guilt or worthlessness",
+      "Difficulty bonding with baby",
+      "Anxiety"
+    ],
+    "severe_symptoms": [
+      "Thoughts of self-harm",
+      "Thoughts of harming the baby",
+      "Severe hopelessness",
+      "Inability to care for self or baby",
+      "Psychotic symptoms",
+      "Severe functional impairment"
+    ],
+    "risks": [
+      "Poor maternal wellbeing",
+      "Impaired bonding",
+      "Breastfeeding difficulties",
+      "Infant care problems",
+      "Suicide risk",
+      "Developmental impact on child"
+    ],
+    "treatment": [
+      "Screen with a validated tool such as EPDS or PHQ-9 where available.",
+      "Provide supportive counselling and involve family support when safe.",
+      "Offer psychological therapy for mild to moderate cases.",
+      "Consider antidepressant treatment when indicated by a qualified clinician.",
+      "Create a safety plan if self-harm thoughts are present.",
+      "Refer urgently for severe depression or safety concerns."
+    ],
+    "urgent_referral_needed_if": [
+      "Thoughts of self-harm",
+      "Thoughts of harming baby",
+      "Psychotic symptoms",
+      "Severe inability to function",
+      "Suicide plan",
+      "Neglect of baby due to illness"
+    ]
+  },
+  {
+    "condition_name": "Postpartum Psychosis",
+    "definition": "Postpartum psychosis is a rare but severe psychiatric emergency after childbirth involving psychosis, mood disturbance, and impaired reality testing.",
+    "symptoms": [
+      "Confusion",
+      "Agitation",
+      "Insomnia",
+      "Mood swings",
+      "Paranoia",
+      "Hallucinations",
+      "Delusions",
+      "Disorganized behaviour"
+    ],
+    "severe_symptoms": [
+      "Thoughts of harming self or baby",
+      "Command hallucinations",
+      "Severe agitation",
+      "Loss of contact with reality",
+      "Refusal to eat or sleep",
+      "Dangerous behaviour"
+    ],
+    "risks": [
+      "Suicide",
+      "Infanticide risk",
+      "Severe maternal harm",
+      "Need for hospitalization",
+      "Impaired infant care",
+      "Relapse in future pregnancies"
+    ],
+    "treatment": [
+      "Treat as psychiatric emergency.",
+      "Ensure mother and baby safety immediately.",
+      "Arrange urgent mental health specialist assessment.",
+      "Hospital admission is usually required.",
+      "Medication such as antipsychotics or mood stabilizers may be needed under specialist care.",
+      "Involve trusted family or caregivers for supervision and support."
+    ],
+    "urgent_referral_needed_if": [
+      "Any psychotic symptom postpartum",
+      "Thoughts of self-harm",
+      "Thoughts of harming baby",
+      "Severe confusion",
+      "Dangerous behaviour",
+      "Command hallucinations"
+    ]
+  }
+]

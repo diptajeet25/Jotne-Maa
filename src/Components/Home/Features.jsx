@@ -6,6 +6,7 @@ import {
   HeartPulse,
   ShieldAlert,
   Sparkles,
+  Stethoscope,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -37,6 +38,13 @@ const features = [
     icon: BrainCircuit,
     action: 'Check Mental Health',
     url: '/mental-health',
+  },
+  {
+    title: 'Maternal Risk Screening',
+    description: 'AI-powered risk screening for maternal health indicators and early attention.',
+    icon: Stethoscope,
+    action: 'Start Screening',
+    url: '/maternal-risk-screening',
   },
   {
     title: 'Emergency Service',

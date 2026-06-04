@@ -9,6 +9,7 @@ const navItems = [
   { to: '/emergency', label: 'Emergency' },
   { to: '/symptom-check', label: 'Symptoms' },
   { to: '/mental-health', label: 'Mental Health' },
+  { to: '/maternal-risk-screening', label: 'Risk Screening' },
 ]
 
 const Header = () => {
