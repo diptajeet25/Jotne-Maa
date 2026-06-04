@@ -14,8 +14,9 @@ import {
 } from 'react-icons/ri'
 import Header from '../Components/Header.jsx'
 import Footer from '../Components/Home/Footer.jsx'
+import PregnancyComplicationsSection from '../Components/PregnancyComplicationsSection.jsx'
 
-const API_URL = 'http://127.0.0.1:8000/predict'
+const API_URL = 'https://maternal-risk-api-xbu6.onrender.com/predict'
 
 const selectOptions = [
   { label: 'Yes', value: 1 },
@@ -401,6 +402,8 @@ const MaternalRiskScreening = () => {
             </aside>
           </div>
         </section>
+
+        <PregnancyComplicationsSection />
       </div>
       </main>
       <Footer />
