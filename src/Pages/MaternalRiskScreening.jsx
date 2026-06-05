@@ -159,7 +159,7 @@ const normalizeRiskLevel = (value) => {
 const getFieldErrorText = (error) => (error ? error.message : '')
 
 const FieldIcon = ({ icon: Icon }) => (
-  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-50 text-pink-600">
+  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-2xl bg-pink-50 text-pink-600">
     <Icon className="h-5 w-5" />
   </span>
 )
@@ -171,8 +171,7 @@ const InputShell = ({ label, icon, error, children, htmlFor, helperText }) => (
       <span>{label}</span>
     </label>
     {children}
-    {helperText ? <p className="mt-2 text-xs leading-5 text-slate-500">{helperText}</p> : null}
-    {error ? <p className="mt-2 text-xs font-medium text-rose-600">{error}</p> : null}
+ {error ? <p className="mt-2 text-xs font-medium text-rose-600">{error}</p> : null}
   </div>
 )
 
@@ -272,7 +271,7 @@ const MaternalRiskScreening = () => {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-6">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="rounded-[30px] border border-slate-100 bg-white p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] sm:p-6"
@@ -284,9 +283,6 @@ const MaternalRiskScreening = () => {
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-bold uppercase tracking-[0.28em] text-violet-600">Risk Screening Form</p>
                   <h2 className="mt-2 text-xl font-black text-slate-950">Provide all health indicators to generate a prediction</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-500">
-                    All fields are required. Please enter accurate values to receive a reliable risk estimate.
-                  </p>
                 </div>
               </div>
 

@@ -246,5 +246,4 @@ const ChatBot = () => {
     </div>
   )
 }
-
 export default ChatBot

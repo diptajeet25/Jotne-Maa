@@ -6,6 +6,7 @@ import Home from './Pages/Home.jsx';
 import About from './Pages/About.jsx';
 import Auth from './Pages/Auth.jsx';
 import SignUp from './Components/Authentication/SignUp.jsx';
+import SignUpDoctor from './Components/Authentication/SignUpDoctor.jsx';
 import SignIn from './Components/Authentication/SignIn.jsx';
 import ForgotPassword from './Components/Authentication/ForgotPassword.jsx';
 import VerifyEmail from './Components/Authentication/VerifyEmail.jsx';
@@ -18,9 +19,11 @@ import DailyActivitySuggestion from './Pages/DailyActivitySuggestion.jsx';
 import MentalHealth from './Pages/MentalHealth.jsx';
 import ChatBot from './Pages/ChatBot.jsx';
 import MaternalRiskScreening from './Pages/MaternalRiskScreening.jsx';
+import ReportAnalyzer from './Pages/ReportAnalyzer.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppLayout from './Components/AppLayout.jsx';
 import PrivateRoute from './Route/PrivateRoute.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,11 @@ const router = createBrowserRouter([
           {
             index:true,
             element:<SignUp />
+          },
+          {
+            path:'register-doctor',
+            element:<SignUpDoctor />
+
           },
           {
             path: "signin",
@@ -89,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: '/chatbot',
         element: <PrivateRoute><ChatBot /></PrivateRoute>
+      },
+      {
+        path: '/report-analyzer',
+        element: <ReportAnalyzer />
       }
     ]
   }

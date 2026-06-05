@@ -92,24 +92,24 @@ const DetailListCard = ({ title, icon: Icon, items, fallbackText, tone = 'slate'
       : []
 
   return (
-    <article className={`rounded-3xl border p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 ${toneMap[tone] ?? toneMap.slate}`}>
+    <article className={`rounded-2xl border p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${toneMap[tone] ?? toneMap.slate}`}>
       <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-white shadow-sm">
-          <Icon className="h-5 w-5" />
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-white shadow-sm">
+          <Icon className="h-4 w-4" />
         </div>
         <div className="min-w-0">
-          <h4 className="text-sm font-black uppercase tracking-[0.2em] text-slate-700">{title}</h4>
+          <h4 className="text-xs font-black uppercase tracking-[0.18em] text-slate-700">{title}</h4>
           {safeItems.length > 0 ? (
-            <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+            <ul className="mt-2 space-y-1 text-sm leading-6 text-slate-700">
               {safeItems.map((item, index) => (
                 <li key={`${title}-${index}`} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#9B5DE5]" />
-                  <span>{item}</span>
+                  <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-[#9B5DE5]" />
+                  <span className="text-sm">{item}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-3 text-sm leading-6 text-slate-500">{fallbackText}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-500">{fallbackText}</p>
           )}
         </div>
       </div>
@@ -231,14 +231,14 @@ const PregnancyComplicationsSection = () => {
   const selectedRiskStyle = riskStyles[selectedRiskLevel]
 
   return (
-    <section className="mt-10 rounded-[32px] border border-white/80 bg-white/80 p-5 shadow-[0_24px_60px_rgba(88,28,135,0.08)] backdrop-blur-xl sm:p-8">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <section className="mt-4 rounded-2xl border border-white/80 bg-white/80 p-3 shadow-[0_18px_40px_rgba(88,28,135,0.06)] backdrop-blur-sm sm:p-5">
+      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-pink-600">
             <RiHospitalLine className="h-4 w-4" />
             Clinical Reference
           </span>
-          <h2 className="mt-4 text-2xl font-black text-slate-950 sm:text-3xl">
+          <h2 className="mt-4 text-2xl font-black text-slate-950 ">
             Common Complications Related to Maternal Risk
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
@@ -246,14 +246,14 @@ const PregnancyComplicationsSection = () => {
           </p>
         </div>
 
-        <div className="inline-flex items-center rounded-2xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm font-bold text-violet-700 shadow-sm">
+        <div className="inline-flex items-center rounded-full border border-violet-100 bg-violet-50 px-3 py-1.5 text-xs font-bold text-violet-700 shadow-sm">
           {complications.length} Complications Available
         </div>
       </div>
 
-      <div className="mt-6 rounded-3xl border border-slate-100 bg-white p-4 shadow-sm sm:p-5">
+      <div className="mt-4 rounded-lg border border-slate-100 bg-white p-2 shadow-sm sm:p-3">
         <label className="relative block">
-          <RiSearchLine className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-violet-500" />
+          <RiSearchLine className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-violet-500" />
           <input
             type="text"
             value={searchTerm}
@@ -261,8 +261,8 @@ const PregnancyComplicationsSection = () => {
               setSearchTerm(event.target.value)
               setShowAll(false)
             }}
-            placeholder="Search by condition name or symptoms"
-            className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-12 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-white focus:ring-4 focus:ring-violet-100"
+            placeholder="Search by condition or symptoms"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-10 pr-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-white focus:ring-2 focus:ring-violet-50"
           />
         </label>
       </div>
@@ -281,7 +281,7 @@ const PregnancyComplicationsSection = () => {
         </div>
       ) : (
         <>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {visibleComplications.map((item, index) => {
               const globalIndex = filteredComplications.findIndex(
                 (entry) => entry?.condition_name === item?.condition_name,
@@ -291,13 +291,13 @@ const PregnancyComplicationsSection = () => {
               return (
                 <article
                   key={`${item?.condition_name}-${cardNumber}`}
-                  className="group rounded-3xl border border-slate-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-pink-200 hover:shadow-[0_18px_36px_rgba(155,93,229,0.14)]"
+                  className="group rounded-2xl border border-slate-100 bg-white p-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-200 hover:shadow-[0_12px_22px_rgba(155,93,229,0.12)]"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-white shadow-sm">
-                      <RiHeartPulseLine className="h-5 w-5" />
+                    <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] text-white shadow-sm">
+                      <RiHeartPulseLine className="h-4 w-4" />
                     </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">#{cardNumber}</span>
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-600">#{cardNumber}</span>
                   </div>
 
                   <h3 className="mt-4 text-sm font-bold leading-6 text-slate-900 sm:text-base">
@@ -307,7 +307,7 @@ const PregnancyComplicationsSection = () => {
                   <button
                     type="button"
                     onClick={() => handleSelectComplication(item)}
-                    className="mt-4 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-pink-600 transition group-hover:border-pink-300 group-hover:bg-pink-100"
+                    className="mt-3 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-pink-600 transition group-hover:border-pink-300 group-hover:bg-pink-100"
                   >
                     <RiFileList3Line className="h-4 w-4" />
                     View Details
@@ -324,11 +324,11 @@ const PregnancyComplicationsSection = () => {
           ) : null}
 
           {filteredComplications.length > INITIAL_VISIBLE_COUNT ? (
-            <div className="mt-6 flex justify-center">
+            <div className="mt-4 flex justify-center">
               <button
                 type="button"
                 onClick={() => setShowAll((previous) => !previous)}
-                className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(155,93,229,0.18)] transition hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(155,93,229,0.16)] transition hover:-translate-y-0.5"
               >
                 {showAll ? 'Show Less' : `See More (${remainingCount} More Complications)`}
               </button>
@@ -338,44 +338,30 @@ const PregnancyComplicationsSection = () => {
           {selectedComplication ? (
             <div
               ref={detailRef}
-              className="mt-8 animate-fade-up rounded-[30px] border border-slate-100 bg-white p-5 shadow-[0_22px_50px_rgba(15,23,42,0.08)] sm:p-6"
+              className="mt-6 animate-fade-up rounded-2xl border border-slate-100 bg-white p-4 shadow-[0_18px_40px_rgba(15,23,42,0.06)] sm:p-5"
             >
-              <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-start gap-3">
+              <div className="flex flex-col gap-2 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
                   <button
                     type="button"
                     onClick={handleBackFromDetail}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-pink-200 hover:bg-pink-50 hover:text-pink-600"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-pink-200 hover:bg-pink-50 hover:text-pink-600"
                     aria-label="Back"
                   >
-                    <RiArrowLeftLine className="h-5 w-5" />
+                    <RiArrowLeftLine className="h-4 w-4" />
                   </button>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Selected Complication</p>
-                    <h3 className="mt-2 text-xl font-black text-slate-950 sm:text-2xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Selected Complication</p>
+                    <h3 className="mt-1 text-lg font-black text-slate-950 sm:text-xl">
                       {selectedComplication?.condition_name}
                     </h3>
                   </div>
                 </div>
 
-                <div className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold ${selectedRiskStyle.badge}`}>
-                  <span className={`h-2.5 w-2.5 rounded-full ${selectedRiskStyle.dot}`} />
-                  {selectedRiskStyle.label}
-                </div>
               </div>
 
-              {selectedRiskLevel === 'high' ? (
-                <div className={`mt-5 rounded-3xl border p-4 text-sm leading-7 ${selectedRiskStyle.card}`}>
-                  <div className="flex items-start gap-3">
-                    <RiErrorWarningLine className="mt-0.5 h-5 w-5 flex-none" />
-                    <p className="font-semibold">
-                      This is a serious condition. Seek medical care immediately if you have any danger signs.
-                    </p>
-                  </div>
-                </div>
-              ) : null}
 
-              <div className="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-2">
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                 <DetailListCard
                   title="Definition"
                   icon={RiInformationLine}

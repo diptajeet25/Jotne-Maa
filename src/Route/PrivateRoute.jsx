@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (loading) {
       navigate('/auth/signin', { replace: true });
     }
   }, [loading, user, navigate]);
