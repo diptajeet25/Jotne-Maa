@@ -1,4 +1,5 @@
 import {
+  Apple,
   ArrowRight,
   Bot,
   BrainCircuit,
@@ -19,7 +20,7 @@ const features = [
     url: '/symptom-check',
   },
   {
-    title: 'Talk To Me',
+    title: 'Talk To Care AI',
     description: 'AI supports anytime for reassurance and quick guidance.',
     icon: Bot,
     action: 'Start Conversation',
@@ -60,6 +61,29 @@ const features = [
     action: 'Check Weekly Advice',
     url: '/week/1',
   },
+  {
+    title: 'Report Analyzer',
+    description :'Analyze your health reports with our AI-powered tool.',
+    icon: Stethoscope,
+    action: 'Analyze Report',
+    url: '/report-analyzer',
+
+  },
+  {
+    title: 'Appoinment Doctor',
+    description:'Book appointments with top-rated doctors.',
+    icon: Stethoscope,
+    action: 'Book Appointment',
+    url: '/booking-appointment',
+  },
+  {
+    title:'Diet Planner',
+    description: 'Personalized diet plans for a healthy pregnancy.',
+    icon: Apple,
+    action: 'Generate Diet Plan',
+    url: '/pregnancy-diet-planner',
+
+  }
 ]
 
 const Features = () => {

@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import {
   Bot,
   LoaderCircle,
+  Mic,
   SendHorizonal,
   ShieldCheck,
   Sparkles,
@@ -12,6 +13,7 @@ import {
 import Header from '../Components/Header'
 import Footer from '../Components/Home/Footer'
 import useAxiosSecure from '../Hooks/useAxiosSecure'
+import useSpeechRecognition from '../Hooks/useSpeechRecognition'
 import { AuthContext } from '../Context/AuthContext'
 
 const getWelcomeText = (displayName) => `Hello${displayName ? ` ${displayName}` : ''}! I'm your AI maternal healthcare assistant 💗`
@@ -49,8 +51,21 @@ const ChatBot = () => {
   const [messages, setMessages] = useState(() => buildInitialMessages(user?.displayName))
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [speechProcessing, setSpeechProcessing] = useState(false)
+  const [toast, setToast] = useState('')
   const chatContainerRef = useRef(null)
   const latestMessageRef = useRef(null)
+  const textareaRef = useRef(null)
+  const wasListeningRef = useRef(false)
+
+  const {
+    transcript,
+    listening,
+    startListening,
+    stopListening,
+    resetTranscript,
+    supported,
+  } = useSpeechRecognition()
 
   const sendMessageMutation = useMutation({
     mutationFn: async (message) => {
@@ -58,6 +73,11 @@ const ChatBot = () => {
       return response.data
     },
   })
+
+  const showToast = (message) => {
+    setToast(message)
+    window.setTimeout(() => setToast(''), 3200)
+  }
 
   useEffect(() => {
     if (!chatContainerRef.current || !latestMessageRef.current) {
@@ -74,12 +94,86 @@ const ChatBot = () => {
     })
   }, [messages, loading])
 
+  useEffect(() => {
+    if (listening) {
+      setSpeechProcessing(false)
+      setInput(transcript)
+      wasListeningRef.current = true
+      return
+    }
+
+    if (!wasListeningRef.current) {
+      return
+    }
+
+    wasListeningRef.current = false
+    setSpeechProcessing(true)
+
+    const finalText = transcript.trim()
+    if (finalText) {
+      setInput(finalText)
+    }
+
+    window.setTimeout(() => {
+      setSpeechProcessing(false)
+      textareaRef.current?.focus()
+    }, 350)
+  }, [listening, transcript])
+
+  const handleMicClick = async () => {
+    if (!supported) {
+      showToast('Speech recognition is not supported in this browser.')
+      return
+    }
+
+    if (listening) {
+      stopListening()
+      return
+    }
+
+    if (loading || speechProcessing) {
+      return
+    }
+
+    resetTranscript()
+
+    await startListening({
+      onPermissionDenied: () => {
+        showToast('Microphone permission required.')
+      },
+      onError: (errorCode) => {
+        if (errorCode === 'unsupported') {
+          showToast('Speech recognition is not supported in this browser.')
+          return
+        }
+
+        if (errorCode === 'no-speech') {
+          showToast('No speech detected. Please try again.')
+          return
+        }
+
+        if (errorCode === 'audio-capture') {
+          showToast('No microphone found. Please connect a microphone.')
+          return
+        }
+
+        if (errorCode !== 'aborted') {
+          showToast('Could not start speech recognition. Please try again.')
+        }
+      },
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     await handleSend()
   }
 
   const handleSend = async () => {
+    if (listening) {
+      stopListening()
+    }
+
     const trimmed = input.trim()
 
     if (!trimmed || loading) {
@@ -94,6 +188,7 @@ const ChatBot = () => {
 
     setMessages((prev) => [...prev, userMessage])
     setInput('')
+    resetTranscript()
     setLoading(true)
 
     try {
@@ -128,6 +223,8 @@ const ChatBot = () => {
       await handleSend()
     }
   }
+
+  const micDisabled = loading || speechProcessing || !supported
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(251,207,232,0.45),transparent_28%),radial-gradient(circle_at_top_right,rgba(196,181,253,0.35),transparent_28%),linear-gradient(180deg,#fff8fd_0%,#ffffff_100%)] text-slate-900">
@@ -217,8 +314,35 @@ const ChatBot = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="mt-3 rounded-[20px] border border-pink-100 bg-white p-2 shadow-sm sm:p-3">
+                {listening ? (
+                  <p className="mb-2 px-2 text-sm font-medium text-rose-600 animate-pulse">
+                    🎤 Listening...
+                  </p>
+                ) : null}
+
                 <div className="flex items-end gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={handleMicClick}
+                    disabled={micDisabled && !listening}
+                    aria-label={listening ? 'Stop listening' : 'Start voice input'}
+                    className={`relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border transition disabled:cursor-not-allowed disabled:opacity-50 ${
+                      listening
+                        ? 'border-rose-300 bg-rose-50 text-rose-600 shadow-[0_0_0_0_rgba(244,63,94,0.45)] animate-pulse'
+                        : speechProcessing
+                          ? 'border-pink-200 bg-pink-50 text-pink-600'
+                          : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-pink-200 hover:bg-pink-50 hover:text-pink-600'
+                    }`}
+                  >
+                    {speechProcessing ? (
+                      <LoaderCircle className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <Mic className={`h-5 w-5 ${listening ? 'text-rose-600' : ''}`} />
+                    )}
+                  </button>
+
                   <textarea
+                    ref={textareaRef}
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
                     onKeyDown={handleInputKeyDown}
@@ -230,7 +354,7 @@ const ChatBot = () => {
                   <button
                     type="submit"
                     disabled={loading || !input.trim()}
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-r from-pink-500 to-violet-500 text-white shadow-[0_14px_28px_rgba(236,72,153,0.20)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-linear-to-r from-pink-500 to-violet-500 text-white shadow-[0_14px_28px_rgba(236,72,153,0.20)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                     aria-label="Send message"
                   >
                     {loading ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <SendHorizonal className="h-5 w-5" />}
@@ -242,8 +366,19 @@ const ChatBot = () => {
         </section>
       </main>
 
+      {toast ? (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 left-1/2 z-50 max-w-[90vw] -translate-x-1/2 rounded-2xl border border-slate-200 bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-xl"
+        >
+          {toast}
+        </div>
+      ) : null}
+
       <Footer />
     </div>
   )
 }
+
 export default ChatBot

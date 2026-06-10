@@ -1,38 +1,65 @@
 import { useContext } from 'react'
 import logo from '../assets/logo.png'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContext'
+import useUser from '../Hooks/useUser'
+import Loading from './Loading'
 
 const navItems = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
   { to: '/emergency', label: 'Emergency' },
-  { to: '/symptom-check', label: 'Symptoms' },
+ 
+]
+const usernavItems=[
+
+  { to: '/symptom-check', label: 'Symptoms Checker' },
+  { to: '/pregnancy-diet-planner', label: 'Diet Planner' },
+  { to: '/booking-appointment', label: 'Doctor Appointments' },
   { to: '/mental-health', label: 'Mental Health' },
-  { to: '/maternal-risk-screening', label: 'Risk Screening' },
+  { to: '/maternal-risk-screening', label: 'Risk Analyzer' },
+  { to: '/report-analyzer', label: 'Report Analyzer' }
+
+]
+const doctornavItems=[
+  { to: '/doctor-appointments-dashboard', label: 'My Appointments' }
 ]
 
+
+
 const Header = () => {
+  const navigate=useNavigate();
   const linkClass = ({ isActive }) =>
     [
       'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium leading-none transition-all duration-200',
       isActive
-        ? 'text-transparent bg-clip-text bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] font-semibold'
-        : 'text-slate-700/80 hover:text-slate-900',
+        ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#FF5FA2] to-[#9B5DE5] font-semibold'
+        : 'text-slate-700/90 hover:text-pink-600 hover:bg-pink-50',
     ].join(' ')
-  const { user, logoutUser } = useContext(AuthContext)
+  const { user, logoutUser,loading } = useContext(AuthContext)
+  const {userData,isLoading}=useUser();
+  console.log(userData);
+  const allNavItems = [
+  ...navItems,
+  ...(userData?.role === 'user' ? usernavItems : []),
+  ...(userData?.role === 'doctor' ? doctornavItems : []),
+];
 
   const handleLogout = async () => {
     await logoutUser()
     alert('Logged out successfully!')
+    navigate('/auth/signin')
+
   }
+  if(isLoading || loading)
+    return <Loading></Loading>
+
 
   return (
-    <header className="sticky top-0 z-50 bg-white/5 backdrop-blur-md border-b border-white/10">
-      <div className="mx-auto max-w-7xl grid grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-3 lg:px-6">
-        <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-md border-b border-slate-100/40 shadow-sm">
+      <div className="mx-auto max-w-7xl flex items-center justify-between gap-4 px-4 py-3 lg:px-6">
+        <div className="flex items-center gap-4">
           <div className="dropdown">
-            <div tabIndex="0" role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex="0" role="button" className="lg:hidden inline-flex items-center justify-center rounded-full p-2 bg-white/70 shadow-sm hover:bg-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -52,7 +79,7 @@ const Header = () => {
               tabIndex="0"
               className="menu menu-sm dropdown-content left-0 mt-3 w-[calc(100vw-2rem)] max-w-100 rounded-box border border-white/20 bg-white/60 backdrop-blur-md p-3 shadow-xl"
             >
-              {navItems.map((item) => (
+              {allNavItems.map((item) => (
                 <li key={item.to} className="flex">
                   <NavLink to={item.to} className={linkClass}>
                     {item.label}
@@ -76,18 +103,18 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="Jotne Maa logo" className="h-10 w-10 shrink-0 rounded-2xl bg-linear-to-r from-[#FFEBF3] to-[#F3F0FF] p-1 shadow-sm ring-1 ring-white/40" />
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logo} alt="Jotne Maa logo" className="h-12 w-12 shrink-0 rounded-3xl bg-gradient-to-br from-[#FFF0F6] to-[#F5F3FF] p-1 shadow-md ring-1 ring-white/50" />
             <div className="min-w-0 leading-tight">
-              <h1 className="text-lg font-semibold text-slate-900 sm:text-xl">Jotne Maa</h1>
+              <h1 className="text-lg font-extrabold text-slate-900 sm:text-xl">Jotne Maa</h1>
               <p className="text-xs text-slate-500 sm:text-sm">Together in Your Motherhood Journey</p>
             </div>
-          </div>
+          </Link>
         </div>
 
-        <div className="hidden lg:flex justify-center">
+        <nav className="hidden lg:flex flex-1 justify-center">
           <ul className="flex items-center justify-center gap-2">
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <li key={item.to} className="flex items-center">
                 <NavLink to={item.to} className={linkClass}>
                   {item.label}
@@ -95,34 +122,31 @@ const Header = () => {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="hidden lg:flex items-center justify-end col-start-3 gap-3">
+        </nav>
+
+        <div className="hidden lg:flex items-center justify-end gap-3">
           {user?.emailVerified ? (
-            <button
-              onClick={handleLogout}
-              className="rounded-full cursor-pointer border border-pink-200 bg-white/70 px-5 py-2.5 text-sm font-semibold text-pink-600 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md"
-            >
+            <button onClick={handleLogout} className="flex items-center gap-2 rounded-full border border-pink-200 bg-white px-4 py-2 text-sm font-semibold text-pink-600 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
+              <span className="inline-flex h-3 w-3 rounded-full bg-pink-500" />
               Logout
             </button>
           ) : (
             <>
               <Link
                 to="/auth"
-                className="rounded-full cursor-pointer border border-pink-200 bg-white/70 px-5 py-2.5 text-sm font-semibold text-pink-600 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md"
+                className="rounded-full cursor-pointer border border-pink-200 bg-white px-4 py-2 text-sm font-semibold text-pink-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md"
               >
                 Sign Up
               </Link>
               <Link
                 to="/auth/signin"
-                className="rounded-full cursor-pointer border-0 bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(155,93,229,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(155,93,229,0.24)]"
+                className="rounded-full cursor-pointer border-0 bg-gradient-to-r from-[#FF5FA2] to-[#9B5DE5] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(155,93,229,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(155,93,229,0.24)]"
               >
                 Sign In
               </Link>
             </>
           )}
         </div>
-        
-        
       </div>
     </header>
   )

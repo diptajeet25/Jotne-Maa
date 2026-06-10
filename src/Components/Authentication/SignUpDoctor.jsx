@@ -1,39 +1,53 @@
-import { sendEmailVerification, updateProfile } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth'
 import React, { useContext, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../Context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../../Firebase/Firebase.init';
-import { Eye, EyeOff } from 'lucide-react';
+import { useFieldArray, useForm } from 'react-hook-form'
+import { AuthContext } from '../../Context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../../Firebase/Firebase.init'
+import { Eye, EyeOff, Plus, Trash2 } from 'lucide-react'
 
 const SignUpDoctor = () => {
-        const {
-            register,
-            handleSubmit,
-            getValues,
-            formState: { errors },
-        } = useForm()
-        const {setUser,createUser}=useContext(AuthContext);
-        const [load,setLoad]=useState(false);
-        const [showPassword, setShowPassword] = useState(false)
-        const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-        const navigate=useNavigate();
+    const {
+        register,
+        handleSubmit,
+        getValues,
+        control,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            availableTimeSlots: [{ startTime: '', endTime: '' }],
+        },
+    })
+
+    const { setUser, createUser } = useContext(AuthContext)
+    const [load, setLoad] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const navigate = useNavigate()
+
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'availableTimeSlots',
+    })
+
+    const availableDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     
-        const onSubmit = async(data) => {
-            console.log('Form Data:', data)
-            setLoad(true);
-            const { email, password } = data
-            try {
-                await  createUser(email,password)
-        setUser(auth.currentUser);
-         const profile={
-                    displayName:data.name,   
-                }
-        await updateProfile(auth.currentUser,profile)
-        
-    
-        localStorage.setItem(
-                "pendingUser",
+    const onSubmit = async (data) => {
+        console.log('Form Data:', data)
+        setLoad(true)
+        const { email, password } = data
+
+        try {
+            await createUser(email, password)
+            setUser(auth.currentUser)
+
+            const profile = {
+                displayName: data.name,
+            }
+            await updateProfile(auth.currentUser, profile)
+
+            localStorage.setItem(
+                'pendingUser',
                 JSON.stringify({
                     name: data.name,
                     email: data.email,
@@ -41,37 +55,40 @@ const SignUpDoctor = () => {
                     role: 'doctor',
                     specialization: data.specialization,
                     experience: data.experience ?? null,
-
+                    qualification: data.qualification ?? '',
+                    hospital: data.hospital ?? '',
+                    chamberAddress: data.chamberAddress ?? '',
+                    consultationFee: data.consultationFee ? Number(data.consultationFee) : null,
+                    availableDays: data.availableDays ?? [],
+                    availableTimeSlots: data.availableTimeSlots ?? [],
                 })
-            );
-    
-            await sendEmailVerification(auth.currentUser,{
-                              url:`${window.location.origin}/auth/signin`,
-                              handleCodeInApp:false
-                          })
-                      
+            )
+
+            await sendEmailVerification(auth.currentUser, {
+                url: `${window.location.origin}/auth/signin`,
+                handleCodeInApp: false,
+            })
+
             alert('Verification email sent! Please check your inbox and verify your email before signing in.')
-            navigate('/auth/verify-email')  
-            }catch(error)
-            {
-                if (error?.code === 'auth/email-already-in-use') {
-                            alert('This email is already registered. Please use another email or log in.');
-                        } else {
-                            alert('Registration failed. Please try again.');
-                        }
+            navigate('/auth/verify-email')
+        } catch (error) {
+            if (error?.code === 'auth/email-already-in-use') {
+                alert('This email is already registered. Please use another email or log in.')
+            } else {
+                alert('Registration failed. Please try again.')
             }
-            finally
-            {
-                setLoad(false);
-    
-            }
-              
+        } finally {
+            setLoad(false)
         }
-    
-        const inputClass =
-            'mt-1.5 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100'
-    
-   return (
+    }
+
+    const inputClass =
+        'mt-1.5 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100'
+
+    const slotInputClass =
+        'mt-1.5 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition focus:border-pink-300 focus:ring-4 focus:ring-pink-100'
+
+    return (
     <div>
         <p className="inline-flex items-center rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-pink-600">
             Join Jotne Maa
@@ -125,8 +142,7 @@ const SignUpDoctor = () => {
                     {errors.phone && <p className="mt-1 text-xs text-rose-500">Phone Number is required.</p>}
                 </div>
             </div>
-               <div className="grid gap-5 md:grid-cols-2">
-                
+            <div className="grid gap-5 md:grid-cols-2">
                 <div>
                     <label htmlFor="specialization" className="block text-sm font-medium text-slate-700">
                        Specialization
@@ -166,8 +182,168 @@ const SignUpDoctor = () => {
                     </div>
                     {errors.experience && <p className="mt-1 text-xs text-rose-500">{errors.experience.message}</p>}
                 </div>
-                  </div>
-            
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                    <label htmlFor="qualification" className="block text-sm font-medium text-slate-700">
+                        Qualification
+                    </label>
+                    <input
+                        type="text"
+                        id="qualification"
+                        placeholder="MBBS, FCPS, MD etc."
+                        {...register('qualification', {
+                            required: 'Qualification is required.',
+                        })}
+                        className={inputClass}
+                    />
+                    {errors.qualification && <p className="mt-1 text-xs text-rose-500">{errors.qualification.message}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="hospital" className="block text-sm font-medium text-slate-700">
+                        Hospital
+                    </label>
+                    <input
+                        type="text"
+                        id="hospital"
+                        placeholder="Enter hospital name"
+                        {...register('hospital', {
+                            required: 'Hospital is required.',
+                        })}
+                        className={inputClass}
+                    />
+                    {errors.hospital && <p className="mt-1 text-xs text-rose-500">{errors.hospital.message}</p>}
+                </div>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                    <label htmlFor="chamberAddress" className="block text-sm font-medium text-slate-700">
+                        Chamber Address
+                    </label>
+                    <input
+                        type="text"
+                        id="chamberAddress"
+                        placeholder="Enter chamber address"
+                        {...register('chamberAddress', {
+                            required: 'Chamber address is required.',
+                        })}
+                        className={inputClass}
+                    />
+                    {errors.chamberAddress && <p className="mt-1 text-xs text-rose-500">{errors.chamberAddress.message}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="consultationFee" className="block text-sm font-medium text-slate-700">
+                        Consultation Fee
+                    </label>
+                    <input
+                        type="number"
+                        id="consultationFee"
+                        placeholder="Enter consultation fee"
+                        {...register('consultationFee', {
+                            required: 'Consultation fee is required.',
+                            valueAsNumber: true,
+                            min: { value: 0, message: 'Consultation fee must be 0 or greater.' },
+                        })}
+                        className={inputClass}
+                    />
+                    {errors.consultationFee && <p className="mt-1 text-xs text-rose-500">{errors.consultationFee.message}</p>}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <label className="block text-sm font-medium text-slate-700">Available Days</label>
+                <div className="grid grid-cols-4 lg:grid-cols-7 gap-3">
+                    {availableDays.map((day) => (
+                        <label
+                            key={day}
+                            className="grid min-h-14 w-full grid-cols- items-center gap-3 overflow-hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm transition hover:border-pink-200 hover:bg-pink-50"
+                        >
+                            <input
+                                type="checkbox"
+                                value={day}
+                                {...register('availableDays', {
+                                    validate: (value) => (value?.length > 0) || 'Select at least one available day.',
+                                })}
+                                className="h-4 w-4 shrink-0 rounded border-slate-300 text-pink-600 focus:ring-pink-500"
+                            />
+                            <span className="min-w-0 truncate leading-5">{day}</span>
+                        </label>
+                    ))}
+                </div>
+                {errors.availableDays && <p className="text-xs text-rose-500">{errors.availableDays.message}</p>}
+            </div>
+
+            <div className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div className="flex items-center justify-between gap-3">
+                    <div>
+                        <p className="text-sm font-medium text-slate-700">Available Time Slots</p>
+                        <p className="text-xs text-slate-500">Add one or more time ranges for appointments.</p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => append({ startTime: '', endTime: '' })}
+                        className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-4 py-2 text-xs font-semibold text-pink-600 shadow-sm transition hover:bg-pink-50"
+                    >
+                        <Plus size={14} />
+                        Add Slot
+                    </button>
+                </div>
+
+                <div className="space-y-4">
+                    {fields.map((field, index) => (
+                        <div
+                            key={field.id}
+                            className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:grid-cols-[1fr_1fr_auto] md:items-end"
+                        >
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">Start Time</label>
+                                <input
+                                    type="time"
+                                    {...register(`availableTimeSlots.${index}.startTime`, {
+                                        required: 'Start time is required.',
+                                    })}
+                                    className={slotInputClass}
+                                />
+                                {errors.availableTimeSlots?.[index]?.startTime && (
+                                    <p className="mt-1 text-xs text-rose-500">
+                                        {errors.availableTimeSlots[index].startTime.message}
+                                    </p>
+                                )}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700">End Time</label>
+                                <input
+                                    type="time"
+                                    {...register(`availableTimeSlots.${index}.endTime`, {
+                                        required: 'End time is required.',
+                                    })}
+                                    className={slotInputClass}
+                                />
+                                {errors.availableTimeSlots?.[index]?.endTime && (
+                                    <p className="mt-1 text-xs text-rose-500">
+                                        {errors.availableTimeSlots[index].endTime.message}
+                                    </p>
+                                )}
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={() => remove(index)}
+                                disabled={fields.length === 1}
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                                <Trash2 size={14} />
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
       
 
@@ -246,6 +422,9 @@ const SignUpDoctor = () => {
             <span className="block text-center text-sm text-slate-500">
                 Already have an account? <a href="/auth/signin" className="text-pink-600 hover:underline">Sign In</a>
             </span>
+            <span className="block text-center text-sm text-slate-500">
+  Looking for maternity care? <a href="/auth" className="font-semibold text-pink-600 hover:text-pink-700 hover:underline">Join as an User</a>
+</span>
         </form>
     </div>
   )

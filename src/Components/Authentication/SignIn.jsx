@@ -45,6 +45,19 @@ const SignIn = () => {
         }
         catch(error)
         {
+
+
+              if (error.code === 'auth/invalid-credential') {
+        alert('Invalid email or password.');
+    }
+    else if (error.code === 'auth/user-not-found') {
+        alert('No user found with this email.');
+    }
+    else if (error.code === 'auth/wrong-password') {
+        alert('Incorrect password.');
+    }
+
+
             if(error.response && error.response.status===404)
             {
                 alert('No user found with this email. Please sign up first.');

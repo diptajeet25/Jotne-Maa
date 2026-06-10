@@ -286,6 +286,9 @@ const SignUp = () => {
             <span className="block text-center text-sm text-slate-500">
                 Already have an account? <a href="/auth/signin" className="text-pink-600 hover:underline">Sign In</a>
             </span>
+           <span className="block text-center text-sm text-slate-500">
+  Are you a doctor? <a href="/auth/register-doctor" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">Join Our Medical Team</a>
+</span>
         </form>
     </div>
   )
