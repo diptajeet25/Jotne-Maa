@@ -169,7 +169,7 @@ const MyAppointments = () => {
 								<Sparkles className="h-4 w-4" />
 								My Appointments
 							</div>
-							<h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+							<h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
 								Track your care journey in one elegant view.
 							</h1>
 							<p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">

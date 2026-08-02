@@ -1,17 +1,17 @@
+import { Link } from 'react-router-dom'
 import { HeartPulse, Mail, MapPin, PhoneCall } from 'lucide-react'
 
 const quickLinks = [
-  'Week-wise Advice',
-  'Symptom Checker',
-  'Mental Health Support',
-  'Emergency Service',
+  { label: 'Week-wise Advice', to: '/week/1' },
+  { label: 'Mental Health Support', to: '/dashboard/mental-health' },
+  { label: 'Emergency Service', to: '/emergency' },
 ]
 
 const supportLinks = [
-  'Talk To Me',
-  'Weekly Pregnancy Tracker',
-  'Daily Health Tips',
-  'Secure Login',
+  { label: 'Talk To Me', to: '/chatbot' },
+  { label: 'Weekly Pregnancy Tracker', to: '/week/1' },
+  { label: 'Daily Health Tips', to: '/daily-activity' },
+  { label: 'Secure Login', to: '/auth/signin' },
 ]
 
 const Footer = () => {
@@ -67,10 +67,10 @@ const Footer = () => {
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#FF5FA2]">Quick Care</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-600">
                 {quickLinks.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="transition-colors duration-200 hover:text-pink-600">
-                      {item}
-                    </a>
+                  <li key={item.label}>
+                    <Link to={item.to} className="transition-colors duration-200 hover:text-pink-600">
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -80,10 +80,10 @@ const Footer = () => {
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9B5DE5]">Support</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-600">
                 {supportLinks.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="transition-colors duration-200 hover:text-violet-600">
-                      {item}
-                    </a>
+                  <li key={item.label}>
+                    <Link to={item.to} className="transition-colors duration-200 hover:text-violet-600">
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

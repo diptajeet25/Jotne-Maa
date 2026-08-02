@@ -5,6 +5,7 @@ import { auth } from '../../Firebase/Firebase.init'
 import { sendEmailVerification, updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router'
 import { Eye, EyeOff } from 'lucide-react'
+import showToast from '../../utils/showToast'
 
 const SignUp = () => {
     const {
@@ -72,14 +73,14 @@ const SignUp = () => {
                           handleCodeInApp:false
                       })
                   
-        alert('Verification email sent! Please check your inbox and verify your email before signing in.')
+        await showToast('Verification email sent! Please check your inbox and verify your email before signing in.', 'success')
         navigate('/auth/verify-email')  
         }catch(error)
         {
             if (error?.code === 'auth/email-already-in-use') {
-                        alert('This email is already registered. Please use another email or log in.');
+                        await showToast('This email is already registered. Please use another email or log in.', 'error');
                     } else {
-                        alert('Registration failed. Please try again.');
+                        await showToast('Registration failed. Please try again.', 'error');
                     }
         }
         finally
@@ -284,10 +285,10 @@ const SignUp = () => {
                 {load ? ` Creating Account...` : 'Create Account'}
             </button>
             <span className="block text-center text-sm text-slate-500">
-                Already have an account? <a href="/auth/signin" className="text-pink-600 hover:underline">Sign In</a>
+                Already have an account? <a href="/#/auth/signin" className="text-pink-600 hover:underline">Sign In</a>
             </span>
            <span className="block text-center text-sm text-slate-500">
-  Are you a doctor? <a href="/auth/register-doctor" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">Join Our Medical Team</a>
+  Are you a doctor? <a href="/#/auth/register-doctor" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">Join Our Medical Team</a>
 </span>
         </form>
     </div>

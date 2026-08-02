@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../Firebase/Firebase.init'
 import { AuthContext } from '../../Context/AuthContext'
+import showToast from '../../utils/showToast'
 
 const VerifyEmail = () => {
 
@@ -19,13 +20,13 @@ const VerifyEmail = () => {
           handleCodeInApp:false
 
       });
-      alert('Verification email sent! Please check your inbox.');
+      await showToast('Verification email sent! Please check your inbox.', 'success');
      
 
     }catch(error)
     {
       console.error('Error sending verification email:', error);
-      alert('Failed to resend verification email. Please try again later.');
+      await showToast('Failed to resend verification email. Please try again later.', 'error');
 
 
     }

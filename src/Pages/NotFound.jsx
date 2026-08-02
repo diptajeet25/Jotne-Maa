@@ -50,7 +50,7 @@ const NotFound = () => {
                 </div>
               </div>
 
-              <h1 className="mt-6  text-xl font-bold leading-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
                 The page you were looking for has drifted away.
               </h1>
 

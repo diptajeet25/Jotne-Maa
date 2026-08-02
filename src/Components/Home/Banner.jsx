@@ -11,7 +11,7 @@ const Banner = () => {
           <div className="z-10 max-w-2xl text-center lg:max-w-none lg:text-left">
             <span className="inline-flex items-center gap-2 rounded-full bg-pink-100/60 px-3 py-1 text-sm font-semibold text-pink-600">Premium Maternity Care</span>
 
-            <h1 className="mt-6 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            <h1 className="mt-6 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
               <span>Every Step of Your&nbsp;</span>
               <span className="bg-clip-text text-transparent bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5]">Pregnancy</span>
               <span>, We’re Here for You.</span>
@@ -74,8 +74,8 @@ const Banner = () => {
 
               <div className="absolute right-12 bottom-6 hidden w-40 rounded-xl border border-white/20 bg-white/50 p-3 shadow-lg backdrop-blur-md motion-safe:animate-[float_6s_ease-in-out_infinite] z-20 sm:block">
                 <div>
-                  <div className="text-xs text-slate-500">Symptom Checker</div>
-                  <div className="mt-1 text-sm font-semibold text-slate-900">Quick Scan</div>
+                  <div className="text-xs text-slate-500">Care Alerts</div>
+                  <div className="mt-1 text-sm font-semibold text-slate-900">Quick View</div>
                 </div>
               </div>
 

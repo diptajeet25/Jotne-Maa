@@ -303,7 +303,7 @@ const isAcceptedFile = (file) => {
   return ACCEPTED_TYPES.includes(file.type) || ACCEPTED_EXTENSIONS.includes(extension)
 }
 
-const ReportAnalyzer = () => {
+const ReportAnalyzer = ({ showShell = true }) => {
   const fileInputRef = useRef(null)
 
   const [selectedReportType, setSelectedReportType] = useState('ultrasound')
@@ -497,7 +497,7 @@ const ReportAnalyzer = () => {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(251,207,232,0.55),transparent_28%),radial-gradient(circle_at_top_right,rgba(196,181,253,0.38),transparent_28%),linear-gradient(180deg,#fff7fb_0%,#ffffff_100%)] text-slate-900">
-      <Header />
+      {showShell ? <Header /> : null}
 
       <main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
         <section className="relative overflow-hidden rounded-4xl border border-white/80 bg-white/74 p-5 shadow-[0_28px_90px_rgba(15,23,42,0.08)] backdrop-blur-md sm:p-7 lg:p-8">
@@ -522,7 +522,7 @@ const ReportAnalyzer = () => {
                     <p className="text-xs font-bold uppercase tracking-[0.28em] text-violet-600">
                       Jotne Maa Healthcare
                     </p>
-                    <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+                    <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                       AI Medical Report Analyzer
                     </h1>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
@@ -1010,7 +1010,7 @@ const ReportAnalyzer = () => {
         </section>
       </main>
 
-      <Footer />
+      {showShell ? <Footer /> : null}
     </div>
   )
 }

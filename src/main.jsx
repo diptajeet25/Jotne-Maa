@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createHashRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './index.css'
 import AppLayout from './Components/AppLayout.jsx'
@@ -16,7 +16,6 @@ import About from './Pages/About.jsx'
 import Auth from './Pages/Auth.jsx'
 import NotFound from './Pages/NotFound.jsx'
 import Emergency from './Pages/Emergency.jsx'
-import SymptomCheck from './Pages/SymptomCheck.jsx'
 import WeekGuidance from './Pages/WeekGuidance.jsx'
 import DailyActivitySuggestion from './Pages/DailyActivitySuggestion.jsx'
 import MentalHealth from './Pages/MentalHealth.jsx'
@@ -27,8 +26,10 @@ import Booking from './Pages/Booking.jsx'
 import DoctorAppointmentsDashboard from './Pages/DoctorAppointmentsDashboard.jsx'
 import MyAppointments from './Pages/MyAppointments.jsx'
 import DietPlannerPage from './Pages/DietPlannerPage.jsx'
+import DashboardLayout from './Components/Dashboard/DashboardLayout.jsx'
+import DashboardOverview from './Pages/DashboardOverview.jsx'
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
@@ -45,8 +46,34 @@ const router = createHashRouter([
         element: <Emergency />,
       },
       {
-        path: '/symptom-check',
-        element: <PrivateRoute><SymptomCheck /></PrivateRoute>,
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+          {
+            index: true,
+            element: <DashboardOverview />,
+          },
+          {
+            path: 'diet',
+            element: <DietPlannerPage showShell={false} />,
+          },
+          {
+            path: 'mental-health',
+            element: <MentalHealth showShell={false} />,
+          },
+          {
+            path: 'report-analyzer',
+            element: <ReportAnalyzer showShell={false} />,
+          },
+          {
+            path: 'risk-analyzer',
+            element: <MaternalRiskScreening showShell={false} />,
+          },
+          {
+            path: 'doctor-appointments-dashboard',
+            element: <DoctorAppointmentsDashboard showShell={false} />,
+          },
+        ],
       },
       {
         path: '/auth',
@@ -87,12 +114,8 @@ const router = createHashRouter([
         element: <DailyActivitySuggestion />,
       },
       {
-        path: '/mental-health',
-        element: <PrivateRoute><MentalHealth /></PrivateRoute>,
-      },
-      {
         path: '/maternal-risk-screening',
-        element: <PrivateRoute><MaternalRiskScreening /></PrivateRoute>,
+        element: <Navigate to="/dashboard/risk-analyzer" replace />,
       },
       {
         path: '/chatbot',
@@ -100,7 +123,7 @@ const router = createHashRouter([
       },
       {
         path: '/report-analyzer',
-        element: <PrivateRoute><ReportAnalyzer /></PrivateRoute>,
+        element: <Navigate to="/dashboard/report-analyzer" replace />,
       },
       {
         path: '/booking-appointment',
@@ -108,7 +131,7 @@ const router = createHashRouter([
       },
       {
         path: '/doctor-appointments-dashboard',
-        element: <PrivateRoute><DoctorAppointmentsDashboard /></PrivateRoute>,
+        element: <Navigate to="/dashboard/doctor-appointments-dashboard" replace />,
       },
       {
         path: '/my-appointments',
@@ -116,7 +139,7 @@ const router = createHashRouter([
       },
       {
         path: '/pregnancy-diet-planner',
-        element:<PrivateRoute><DietPlannerPage /></PrivateRoute>,
+        element:<Navigate to="/dashboard/diet" replace />,
       },
     ],
   },

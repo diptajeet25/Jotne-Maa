@@ -8,6 +8,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure'
 import bookingBanner from '../assets/booking.jpg'
 import { AuthContext } from '../Context/AuthContext.jsx'
 import { useContext } from 'react'
+import showToast from '../utils/showToast'
 
 
 const toDoctorArray = (payload) => {
@@ -173,15 +174,17 @@ const Booking = () => {
 			
 			
 		}
-    await axios.post('/booking', bookingData)
-    alert('Request Sent Successfully!Wait For confirmation')
-
-
-		console.log(bookingData)
-        setBookingLoading(false)
-        setSelectedDate('')
+	try {
+		await axios.post('/booking', bookingData)
+		await showToast('Request sent successfully! Wait for confirmation.', 'success')
+	} catch (error) {
+		await showToast(error?.response?.data?.message || 'Unable to send booking request. Please try again.', 'error')
+	} finally {
+		setBookingLoading(false)
+		setSelectedDate('')
 		setSelectedTimeSlot('')
 		setSelectedDoctor(null)
+	}
 
 	}
 

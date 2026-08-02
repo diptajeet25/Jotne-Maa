@@ -43,7 +43,7 @@ const WeekWise = ({data, isLoading}) => {
         {/* Header: Week title + trimester badge */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
-            <h1 className="text-4xl font-extrabold text-slate-900">Week {weekData.week}</h1>
+            <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">Week {weekData.week}</h1>
             <span className="inline-block bg-pink-50 text-pink-600 px-3 py-1 rounded-full font-semibold text-sm">{weekData.trimester}</span>
           </div>
  

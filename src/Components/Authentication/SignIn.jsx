@@ -4,12 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthContext'
 import { auth } from '../../Firebase/Firebase.init'
 import { signOut } from 'firebase/auth'
+import { Eye, EyeOff } from 'lucide-react'
 import useAxiosSecure from '../../Hooks/useAxiosSecure'
+import showToast from '../../utils/showToast'
 
 const SignIn = () => {
     
     const {register, handleSubmit, formState: { errors }} = useForm()
     const [submitted, setSubmitted] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate();
     const {loginUser}=useContext(AuthContext);
     const axiosSecure=useAxiosSecure();
@@ -23,7 +26,7 @@ const SignIn = () => {
             await loginUser(data.email,data.password);
              if(!auth.currentUser?.emailVerified)
             {
-                alert('Please verify your email before signing in. Check your inbox for the verification email.');
+                await showToast('Please verify your email before signing in. Check your inbox for the verification email.', 'warning');
                 await signOut(auth);
                 return;
             }
@@ -41,26 +44,26 @@ const SignIn = () => {
                 localStorage.removeItem('pendingUser');
             }
             navigate('/');
-            alert('Sign in successful! Welcome back to Jotne Maa.')
+            await showToast('Sign in successful! Welcome back to Jotne Maa.', 'success')
         }
         catch(error)
         {
 
 
               if (error.code === 'auth/invalid-credential') {
-        alert('Invalid email or password.');
+        await showToast('Invalid email or password.', 'error');
     }
     else if (error.code === 'auth/user-not-found') {
-        alert('No user found with this email.');
+        await showToast('No user found with this email.', 'error');
     }
     else if (error.code === 'auth/wrong-password') {
-        alert('Incorrect password.');
+        await showToast('Incorrect password.', 'error');
     }
 
 
             if(error.response && error.response.status===404)
             {
-                alert('No user found with this email. Please sign up first.');
+                await showToast('No user found with this email. Please sign up first.', 'error');
                 navigate('/auth');
                 return;
             }
@@ -110,13 +113,23 @@ const SignIn = () => {
                     <label htmlFor="password" className="block text-sm font-medium text-slate-700">
                         Password
                     </label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder='Enter your Password'
-                        {...register('password', { required: true })}
-                        className={inputClass}
-                    />
+                    <div className="relative">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            id="password"
+                            placeholder='Enter your Password'
+                            {...register('password', { required: true })}
+                            className={`${inputClass} pr-11`}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            className="absolute inset-y-0 right-3 flex items-center text-slate-500 transition hover:text-pink-600"
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
                     {errors.password && <p className="mt-1 text-xs text-rose-500">Password is required.</p>}
                 </div>
 

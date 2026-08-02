@@ -13,14 +13,7 @@ import { Link } from 'react-router-dom'
 
 const features = [
   {
-    title: 'Symptom Checker',
-    description: 'Smart symptom analysis to help you understand what needs attention.',
-    icon: HeartPulse,
-    action: 'Check Symptoms Now',
-    url: '/symptom-check',
-  },
-  {
-    title: 'Talk To Care AI',
+    title: 'Talk To AI Chatbot',
     description: 'AI supports anytime for reassurance and quick guidance.',
     icon: Bot,
     action: 'Start Conversation',
@@ -38,14 +31,14 @@ const features = [
     description: 'Emotional care and stress relief designed for your wellbeing.',
     icon: BrainCircuit,
     action: 'Check Mental Health',
-    url: '/mental-health',
+    url: '/dashboard/mental-health',
   },
   {
     title: 'Maternal Risk Screening',
     description: 'AI-powered risk screening for maternal health indicators and early attention.',
     icon: Stethoscope,
     action: 'Start Screening',
-    url: '/maternal-risk-screening',
+    url: '/dashboard/risk-analyzer',
   },
   {
     title: 'Emergency Service',
@@ -66,11 +59,11 @@ const features = [
     description :'Analyze your health reports with our AI-powered tool.',
     icon: Stethoscope,
     action: 'Analyze Report',
-    url: '/report-analyzer',
+    url: '/dashboard/report-analyzer',
 
   },
   {
-    title: 'Appoinment Doctor',
+    title: '24/7 Telemedicine',
     description:'Book appointments with top-rated doctors.',
     icon: Stethoscope,
     action: 'Book Appointment',
@@ -81,7 +74,7 @@ const features = [
     description: 'Personalized diet plans for a healthy pregnancy.',
     icon: Apple,
     action: 'Generate Diet Plan',
-    url: '/pregnancy-diet-planner',
+    url: '/dashboard/diet',
 
   }
 ]

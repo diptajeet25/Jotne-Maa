@@ -536,9 +536,36 @@ const HospitalCard = ({ data, isNearest }) => {
               <PhoneCall size={16} />
               Call Ambulance
             </button>
+            
           )}
+          {canOpenMap ? (
+            (() => {
+              const mapsUrl = data.latitude != null && data.longitude != null
+                ? `https://www.google.com/maps/search/?api=1&query=${data.latitude},${data.longitude}`
+                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.address)}`
 
-  
+              return (
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-11 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white text-sm font-bold text-slate-700 transition-all hover:bg-slate-50"
+                >
+                  <MapPinned size={16} />
+                  Open Map
+                </a>
+              )
+            })()
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="flex h-11 cursor-not-allowed items-center justify-center gap-2 rounded-2xl bg-slate-100 text-sm font-bold text-slate-400"
+            >
+              <MapPinned size={16} />
+              Open Map
+            </button>
+          )}
         </div>
       </div>
     </motion.article>

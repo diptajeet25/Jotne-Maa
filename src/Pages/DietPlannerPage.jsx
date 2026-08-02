@@ -11,7 +11,7 @@ import { getDietPlannerErrorMessage } from '../Services/dietPlannerApi.js'
 import pregnancyDietImage from '../assets/banner.png'
 
 
-const DietPlannerPage = () => {
+const DietPlannerPage = ({ showShell = true }) => {
   const formRef = useRef(null)
   const resultRef = useRef(null)
   const successTimerRef = useRef(null)
@@ -111,7 +111,7 @@ const DietPlannerPage = () => {
 
   return (
     <div className="bg-[#fff8fd] text-slate-900">
-      <Header />
+      {showShell ? <Header /> : null}
 
       <main className="relative isolate overflow-hidden px-4 pb-12 pt-6 sm:px-6 lg:px-8 lg:pb-16">
         <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_top_left,rgba(255,95,162,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(155,93,229,0.16),transparent_30%),linear-gradient(180deg,rgba(255,244,250,1),rgba(255,248,253,0.8))]" />
@@ -133,7 +133,7 @@ const DietPlannerPage = () => {
                   Personalized Nutrition
                 </div>
 
-                <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl lg:leading-tight">
+                <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                   Personalized Pregnancy Diet Planner
                 </h1>
 
@@ -221,7 +221,7 @@ const DietPlannerPage = () => {
         </section>
       </main>
 
-      <Footer />
+      {showShell ? <Footer /> : null}
     </div>
   )
 }

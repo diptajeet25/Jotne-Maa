@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import showToast from '../utils/showToast'
 import {
   RiAlertLine,
   RiBarChart2Line,
@@ -175,7 +176,7 @@ const InputShell = ({ label, icon, error, children, htmlFor, helperText }) => (
   </div>
 )
 
-const MaternalRiskScreening = () => {
+const MaternalRiskScreening = ({ showShell = true }) => {
   const [prediction, setPrediction] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -236,7 +237,7 @@ const MaternalRiskScreening = () => {
         error?.message ??
         'Unable to generate prediction right now.'
 
-      alert(errorMessage)
+      await showToast(errorMessage, 'error')
     } finally {
       setIsLoading(false)
     }
@@ -248,7 +249,7 @@ const MaternalRiskScreening = () => {
 
   return (
     <div>
-      <Header />
+      {showShell ? <Header /> : null}
       <main className="relative overflow-hidden bg-linear-to-b from-[#fff4fa] via-white to-[#f8f1ff] px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-violet-200/30 blur-3xl" />
@@ -263,7 +264,7 @@ const MaternalRiskScreening = () => {
               <RiSparklingLine className="h-4 w-4" />
               AI Screening
             </span>
-            <h1 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+            <h1 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
               Maternal Risk Screening
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
@@ -271,7 +272,7 @@ const MaternalRiskScreening = () => {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_0.9fr]">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="rounded-[30px] border border-slate-100 bg-white p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] sm:p-6"
@@ -402,7 +403,7 @@ const MaternalRiskScreening = () => {
         <PregnancyComplicationsSection />
       </div>
       </main>
-      <Footer />
+      {showShell ? <Footer /> : null}
     </div>
   )
 }

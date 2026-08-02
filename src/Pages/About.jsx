@@ -15,7 +15,6 @@ import {
   Sparkles,
   Stethoscope,
   Star,
-  Activity,
   MapPinned,
   Mail,
   PhoneCall,
@@ -62,11 +61,6 @@ const features = [
     icon: Bot,
     title: 'AI Chat Support',
     text: 'Always-on assistance for quick answers, navigation help, and reassurance between visits.',
-  },
-  {
-    icon: Activity,
-    title: 'Symptom Checker',
-    text: 'A simple, calm tool for understanding common symptoms before deciding on next steps.',
   },
   {
     icon: HeartPulse,
@@ -130,7 +124,7 @@ const About = () => {
                 About Jotne Maa
               </div>
 
-              <h1 className="animate-fade-up mt-6 max-w-3xl text-4xl font-black leading-[1.05] text-slate-950 sm:text-5xl lg:text-6xl">
+              <h1 className="animate-fade-up mt-6 max-w-3xl text-3xl font-black leading-[1.05] text-slate-950 sm:text-4xl">
                 Supporting Every Mother, Every Step of the Way.
               </h1>
 
@@ -140,10 +134,10 @@ const About = () => {
 
               <div className="animate-fade-up mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  to="/auth"
+                  to="/week/1"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-[#FF5FA2] to-[#9B5DE5] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(155,93,229,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(155,93,229,0.28)]"
                 >
-                  Join Our Journey
+                  Get Weekly Tips
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/chatbot"

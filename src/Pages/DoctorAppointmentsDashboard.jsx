@@ -6,6 +6,7 @@ import Header from '../Components/Header.jsx'
 import Footer from '../Components/Home/Footer.jsx'
 import useAxiosSecure from '../Hooks/useAxiosSecure'
 import { AuthContext } from '../Context/AuthContext.jsx'
+import showToast from '../utils/showToast'
 
 const formatAppointmentDate = (dateValue) => {
 	if (!dateValue) return ''
@@ -30,15 +31,17 @@ const statusBadgeClass = {
 }
 
 const DashboardCard = ({ title, value, icon: Icon, accentClass }) => (
-	<div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+	<div className="relative flex h-full min-h-[170px] flex-col justify-between overflow-hidden rounded-[28px] border border-white/70 bg-white p-6 pr-16 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
 		<div className={`absolute inset-x-0 top-0 h-1.5 ${accentClass}`} />
-		<div className="flex items-start justify-between gap-4">
+		<div className="absolute right-5 top-5 rounded-2xl bg-slate-50 p-3 text-slate-700 shadow-sm ring-1 ring-white/70">
+			<Icon className="h-6 w-6" />
+		</div>
+		<div className="space-y-4">
 			<div>
-				<p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">{title}</p>
-				<p className="mt-3 text-3xl font-black text-slate-950">{value}</p>
-			</div>
-			<div className="rounded-2xl bg-slate-50 p-3 text-slate-700 shadow-sm">
-				<Icon className="h-6 w-6" />
+				<p className="max-w-[12rem] text-xs font-semibold uppercase tracking-[0.16em] leading-6 text-slate-500 sm:text-[0.8rem]">
+					{title}
+				</p>
+				<p className="mt-4 text-4xl font-black leading-none text-slate-950 sm:text-5xl">{value}</p>
 			</div>
 		</div>
 	</div>
@@ -91,7 +94,7 @@ const AppointmentRow = ({ appointment, children }) => (
 	</div>
 )
 
-const DoctorAppointmentsDashboard = () => {
+const DoctorAppointmentsDashboard = ({ showShell = true }) => {
 	const axios = useAxiosSecure()
 	const { user: loggedInDoctor } = useContext(AuthContext)
 	const [selectedAppointment, setSelectedAppointment] = useState(null)
@@ -153,7 +156,7 @@ const DoctorAppointmentsDashboard = () => {
 
 	const handleApproveAppointment = async () => {
 		if (!meetingLink.trim()) {
-			alert('Please enter a meeting link')
+			await showToast('Please enter a meeting link', 'warning')
 			return
 		}
 
@@ -177,7 +180,7 @@ const DoctorAppointmentsDashboard = () => {
         const res=await axios.patch(`/approve-booking/${selectedAppointment._id}`, approvalData)   
         if(res.status===200)
             {
-                alert('Appointment Approved Successfully')
+                await showToast('Appointment approved successfully', 'success')
             } 
 
 
@@ -239,7 +242,7 @@ const DoctorAppointmentsDashboard = () => {
 
 	return (
 		<div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(251,207,232,0.42),transparent_26%),radial-gradient(circle_at_top_right,rgba(196,181,253,0.32),transparent_25%),linear-gradient(180deg,#fff7fb_0%,#ffffff_100%)] text-slate-900">
-			<Header />
+			{showShell ? <Header /> : null}
 
 			<main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
 				<section className="relative overflow-hidden rounded-4xl border border-rose-100 bg-linear-to-r from-[#FFF1F7] via-white to-[#F7F0FF] px-6 py-7 shadow-[0_20px_60px_rgba(155,93,229,0.10)] sm:px-8 lg:px-10">
@@ -254,7 +257,7 @@ const DoctorAppointmentsDashboard = () => {
 								<Sparkles className="h-4 w-4" />
 								Doctor Appointments Dashboard
 							</div>
-							<h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+							<h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
 								Manage upcoming appointments with clarity and speed.
 							</h1>
 							<p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
@@ -262,7 +265,7 @@ const DoctorAppointmentsDashboard = () => {
 							</p>
 						</div>
 
-						<div className="grid gap-2 sm:grid-cols-2 lg:w-xl">
+						<div className="grid w-full gap-4 sm:grid-cols-2 lg:w-[40rem] xl:w-[42rem]">
 							<DashboardCard
 								title="Pending Appointments Count"
 								value={counts.pending}
@@ -418,7 +421,7 @@ const DoctorAppointmentsDashboard = () => {
 				) : null}
 			</main>
 
-			<Footer />
+			{showShell ? <Footer /> : null}
 		</div>
 	)
 }

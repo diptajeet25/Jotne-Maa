@@ -244,7 +244,7 @@ const ChatBot = () => {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-pink-600">AI Maternal Assistant</p>
-                    <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">Care Chat Support</h1>
+                    <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Care Chat Support</h1>
                     <p className="mt-1 text-sm text-slate-500">Ask pregnancy care, wellness, and support questions any time.</p>
                   </div>
                 </div>

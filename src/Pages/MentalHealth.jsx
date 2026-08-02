@@ -108,7 +108,7 @@ const fallbackSupportRecommendations = [
   'Use small daily check-ins, rest, and gentle routines to reduce stress.',
 ]
 
-function MentalHealth() {
+function MentalHealth({ showShell = true }) {
   const axiosSecure = useAxiosSecure()
   const [answers, setAnswers] = useState(initialAnswers)
   const [selfHarmRisk, setSelfHarmRisk] = useState('')
@@ -280,7 +280,7 @@ function MentalHealth() {
 
   return (
     <div>
-      <Header />
+      {showShell ? <Header /> : null}
 
       <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(251,207,232,0.45),transparent_28%),radial-gradient(circle_at_top_right,rgba(196,181,253,0.35),transparent_28%),linear-gradient(180deg,#fff8fd_0%,#ffffff_100%)] text-slate-900">
         <div className="pointer-events-none absolute left-8 top-16 h-32 w-32 rounded-full bg-pink-200/30 blur-3xl animate-pulse-glow" />
@@ -295,7 +295,7 @@ function MentalHealth() {
                 Mental Health Screening
               </div>
 
-              <h1 className="mt-5 max-w-xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+              <h1 className="mt-5 max-w-xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                 Mental Health Matters <span className="text-pink-500">💗</span>
               </h1>
 
@@ -668,7 +668,7 @@ function MentalHealth() {
         </section>
         </section>
       </main>
-      <Footer />
+      {showShell ? <Footer /> : null}
     </div>
   )
 }

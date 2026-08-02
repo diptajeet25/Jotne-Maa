@@ -133,7 +133,7 @@ const DailyActivitySuggestion = () => {
                   Daily Pregnancy Guidance
                 </div>
 
-                <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.98]">
+                <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                   Practical Health Tips for Every Day
                 </h1>
 
