@@ -186,10 +186,10 @@ The Node.js server communicates with multiple Python services while ensuring the
 
 # Local Setup
 
-Clone the repository
+Clone the Client repository
 
 ```bash
-git clone https://github.com/your-username/jotne-maa.git
+git clone https://github.com/diptajeet25/Jotne-Maa.git
 ```
 
 Install frontend
@@ -197,11 +197,15 @@ Install frontend
 ```bash
 npm install
 ```
+Clone the Server repository
+
+```bash
+git clone https://github.com/diptajeet25/Jotne-Maa-Server
+```
 
 Install backend
 
 ```bash
-cd server
 npm install
 ```
 
