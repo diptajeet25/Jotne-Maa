@@ -67,7 +67,7 @@ Evaluates emotional well-being through questionnaire-based analysis and provides
                                               │
                     ┌──────────────┬───────────────┬─────────────┐
                     ▼              ▼               ▼             ▼
-               Chatbot       Risk Model     Medical Report Analysis    Diet Planner
+               Chatbot       Risk Model    Report Analysis    Diet Planner
 ```
 
 The application follows a microservice-inspired architecture where AI services run independently from the main backend. This separation allows machine learning models to evolve without affecting the core application.
