@@ -12,6 +12,7 @@ const DashboardLayout = () => {
 
   const resolveActiveKey = () => {
     const path = location.pathname
+    if (path.includes('/dashboard/diet')) return 'diet'
     if (path.includes('/dashboard/mental-health')) return 'mental-health'
     if (path.includes('/dashboard/report-analyzer')) return 'report-analyzer'
     if (path.includes('/dashboard/risk-analyzer')) return 'risk-analyzer'
